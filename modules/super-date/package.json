@@ -1,6 +1,6 @@
 {
   "name": "@ant-extensions/super-date",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "publishConfig": {
     "access": "public"
   },
