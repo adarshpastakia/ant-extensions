@@ -48,6 +48,7 @@ export const BasePicker = React.forwardRef<Input, AnyObject>(
             <Popover
               ref={refDropdown}
               visible={visible}
+              destroyTooltipOnHide
               onVisibleChange={toggleVisible}
               overlayClassName="ant-ext-sd__popover"
               content={!readOnly && <E dropdown={refDropdown} value={value} onChange={doUpdate} />}
