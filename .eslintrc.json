@@ -1,0 +1,43 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": ["@typescript-eslint", "import", "react", "react-hooks"],
+  "rules": {
+    "no-extra-boolean-cast": "off",
+    "comma-dangle": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-parameter-properties": "off",
+    "@typescript-eslint/no-unused-vars": [1, { "argsIgnorePattern": "^_" }]
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.tsx"],
+      "rules": {
+        "react/prop-types": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
+      }
+    }
+  ],
+  "ignorePatterns": ["**/*.js", "**/*.jsx", "**/*.d.ts"]
+}

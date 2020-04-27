@@ -1,0 +1,99 @@
+// @author    : Adarsh Pastakia
+// @version   : 0.0.1
+// @copyright : 2020
+// @license   : MIT
+@import "~antd/lib/style/themes/index";
+
+.ant-ext-sd {
+  &__inlinePicker {
+    display: inline-block;
+
+    .ant-picker {
+      display: none;
+
+      ~ div > div {
+        position: static !important;
+
+        .ant-picker-dropdown {
+          border: 1px solid @border-color-base;
+          padding: 0;
+          position: static !important;
+
+          .ant-picker-panel-container {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+  }
+
+  &__tooltip {
+    max-width: unset;
+
+    .ant-tooltip-inner {
+      white-space: nowrap;
+    }
+  }
+
+  &__popover {
+    .ant-popover-arrow {
+      display: none;
+    }
+
+    &.ant-popover-placement-top,
+    &.ant-popover-placement-topLeft,
+    &.ant-popover-placement-topRight,
+    &.ant-popover-placement-bottom,
+    &.ant-popover-placement-bottomLeft,
+    &.ant-popover-placement-bottomRight {
+      padding: 0;
+    }
+
+    .ant-popover-inner-content {
+      padding: 0;
+    }
+
+    .ant-tabs {
+      &-bar {
+        margin: 0;
+        padding: 0 16px;
+      }
+      &-tabpane-inactive {
+        display: none;
+      }
+
+      .ant-picker-dropdown {
+        border: 0 !important;
+      }
+    }
+  }
+
+  &__picker {
+    &--date {
+      width: 280px;
+    }
+    &--range {
+      width: 560px;
+    }
+  }
+
+  &__relativeForm,
+  &__quickForm {
+    min-width: 420px;
+    padding: 16px;
+
+    .ant-input-group {
+      display: flex;
+      flex: 0;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__presetRow {
+    display: grid;
+    grid-gap: 4px;
+    place-items: start;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 16px;
+  }
+}

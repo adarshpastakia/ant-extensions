@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "11.10.0"
+sudo: false
+
+install:
+  - npm install
+  - npm install -g codecov
+
+script:
+  - npm run test
+
+after_script:
+  - codecov

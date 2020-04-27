@@ -1,0 +1,1 @@
+web: npm i -g serve && serve -l $PORT ./build
