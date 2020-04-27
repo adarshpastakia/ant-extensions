@@ -4,11 +4,11 @@ node_js:
 sudo: false
 
 install:
-  - npm install
+  - yarn install
   - npm install -g codecov
 
 script:
-  - npm run test
+  - yarn run test
 
 after_script:
   - codecov
