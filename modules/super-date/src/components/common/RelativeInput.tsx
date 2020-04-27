@@ -27,7 +27,7 @@ export const RelativeInput: React.FC<BaseProps> = React.memo(({ value, onChange 
       setParts(newParts);
       onChange && onChange(`${newParts.part}${newParts.op}${newParts.diff}`);
     },
-    [parts]
+    [parts, onChange]
   );
 
   return (

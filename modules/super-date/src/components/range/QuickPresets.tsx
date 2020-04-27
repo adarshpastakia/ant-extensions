@@ -42,3 +42,4 @@ export const QuickPresets: React.FC<BaseProps> = React.memo(({ onChange }) => {
     </>
   );
 });
+QuickPresets.displayName = "QuickPresets";

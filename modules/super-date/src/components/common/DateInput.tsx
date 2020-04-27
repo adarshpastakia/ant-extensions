@@ -27,3 +27,4 @@ export const DateInput = React.forwardRef<Input, Omit<InputProps, "onChange">>(
     );
   }
 );
+DateInput.displayName = "DateInput";

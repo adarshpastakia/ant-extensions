@@ -38,3 +38,4 @@ export const QuickSelect: React.FC<BaseProps> = React.memo(({ value, onChange })
     </Form.Item>
   );
 });
+QuickSelect.displayName = "QuickSelect";

@@ -43,3 +43,4 @@ export const RangeDropdown: React.FC<
     </Tabs>
   );
 });
+RangeDropdown.displayName = "RangeDropdown";

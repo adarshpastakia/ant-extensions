@@ -31,12 +31,15 @@ export const BasePicker = React.forwardRef<Input, AnyObject>(
       [onChange]
     );
 
-    const toggleVisible = useCallback((v) => {
-      if (!readOnly) {
-        setVisible(v);
-        onVisibleChange && onVisibleChange(v);
-      }
-    }, []);
+    const toggleVisible = useCallback(
+      (v) => {
+        if (!readOnly) {
+          setVisible(v);
+          onVisibleChange && onVisibleChange(v);
+        }
+      },
+      [readOnly, onVisibleChange]
+    );
 
     return (
       <I18nextProvider i18n={i18next}>
@@ -64,3 +67,4 @@ export const BasePicker = React.forwardRef<Input, AnyObject>(
     );
   }
 );
+BasePicker.displayName = "BasePicker";

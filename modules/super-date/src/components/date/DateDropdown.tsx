@@ -39,3 +39,4 @@ export const DateDropdown: React.FC<
     </Tabs>
   );
 });
+DateDropdown.displayName = "DateDropdown";

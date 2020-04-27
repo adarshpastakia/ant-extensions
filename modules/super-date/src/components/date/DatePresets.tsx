@@ -18,3 +18,4 @@ export const DatePresets: React.FC<BaseProps> = React.memo((props) => {
     </div>
   );
 });
+DatePresets.displayName = "DatePresets";

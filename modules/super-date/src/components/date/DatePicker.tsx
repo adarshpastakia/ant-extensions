@@ -32,7 +32,7 @@ export const DatePicker: React.FC<BaseProps> = React.memo(({ value, onChange }) 
     if (_value && onChange) {
       onChange(`${_value.startOf("day").toISOString()}`);
     }
-  }, [_value]);
+  }, [_value, onChange]);
 
   const applyButton = useCallback(
     () => (
@@ -44,7 +44,7 @@ export const DatePicker: React.FC<BaseProps> = React.memo(({ value, onChange }) 
         </Col>
       </Row>
     ),
-    [_value, applyDate]
+    [_value, applyDate, t]
   );
 
   return (
@@ -57,3 +57,4 @@ export const DatePicker: React.FC<BaseProps> = React.memo(({ value, onChange }) 
     />
   );
 });
+DatePicker.displayName = "DatePicker";

@@ -59,3 +59,4 @@ export const RelativeForm: React.FC<BaseProps> = React.memo(({ value, onChange }
     </div>
   );
 });
+RelativeForm.displayName = "RelativeForm";

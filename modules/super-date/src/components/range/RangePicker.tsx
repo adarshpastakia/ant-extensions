@@ -35,7 +35,7 @@ export const RangePicker: React.FC<BaseProps> = React.memo(({ value, onChange })
     if (_value && onChange) {
       onChange(`${_value[0].startOf("day").toISOString()}|${_value[1].endOf("day").toISOString()}`);
     }
-  }, [_value]);
+  }, [_value, onChange]);
 
   const applyButton = useCallback(
     () => (
@@ -47,7 +47,7 @@ export const RangePicker: React.FC<BaseProps> = React.memo(({ value, onChange })
         </Col>
       </Row>
     ),
-    [_value, applyRange]
+    [_value, applyRange, t]
   );
 
   return (
@@ -59,3 +59,4 @@ export const RangePicker: React.FC<BaseProps> = React.memo(({ value, onChange })
     />
   );
 });
+RangePicker.displayName = "RangePicker";

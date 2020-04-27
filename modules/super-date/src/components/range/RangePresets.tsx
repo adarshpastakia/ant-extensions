@@ -18,3 +18,4 @@ export const RangePresets: React.FC<BaseProps> = React.memo((props) => {
     </div>
   );
 });
+RangePresets.displayName = "RangePresets";

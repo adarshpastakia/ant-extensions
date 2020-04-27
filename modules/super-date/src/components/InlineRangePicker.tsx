@@ -23,13 +23,13 @@ export const InlineRangePicker: React.FC<RangePickerProps> = React.forwardRef<
     } else if (ref) {
       ref.current = refRangePicker.current;
     }
-    // @ts-ignore
-    window.testPicker = refRangePicker.current;
-  }, [refRangePicker.current]);
+  }, [ref]);
 
   useLayoutEffect(() => {
-    refContainer.current!.appendChild(refPicker.current!);
-  }, [refContainer.current]);
+    if (refContainer.current) {
+      refContainer.current.appendChild(refPicker.current);
+    }
+  }, []);
 
   const [_value, setValue] = useState<AnyObject>([null, null]);
   useEffect(() => {
@@ -69,3 +69,4 @@ export const InlineRangePicker: React.FC<RangePickerProps> = React.forwardRef<
     </div>
   );
 });
+InlineRangePicker.displayName = "InlineRangePicker";
