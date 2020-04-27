@@ -8,6 +8,7 @@ install:
   - npm install -g codecov
 
 script:
+  - lerna bootstrap
   - yarn run test
 
 after_script:
