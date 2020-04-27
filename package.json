@@ -124,7 +124,7 @@
     "postdist": "lerna version patch --no-git-tag-version --no-push --tag-version-prefix='' --yes",
     "run:test": "jest --ci --runInBand --verbose --detectOpenHandles",
     "test:lint": "eslint --fix --ext=ts,tsx .",
-    "test:typecheck": "tsc --noEmit",
+    "test:typecheck": "tsc -p tsconfig.test.json",
     "test": "npm-run-all test:lint test:typecheck run:test"
   }
 }
