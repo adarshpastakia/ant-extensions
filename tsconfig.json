@@ -26,5 +26,5 @@
   },
   "include": ["./.storybook/*.ts", "./.storybook/*.tsx", "./modules/**/*.tsx", "./modules/**/*.ts"],
   "files": ["./@types/global.d.ts"],
-  "exclude": ["node_modules", "tmp", "dist", "./modules/**/__stories__/**/*", "./modules/**/__tests__/**/*"]
+  "exclude": ["node_modules", "tmp", "dist"]
 }
