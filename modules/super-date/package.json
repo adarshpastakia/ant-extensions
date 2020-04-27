@@ -5,6 +5,16 @@
     "access": "public"
   },
   "description": "Ant React Extended - Super date selector",
+  "keywords": [
+    "antd.4",
+    "superdate",
+    "relative date picker"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "modules/super-date",
+    "url": "https://github.com/adarshpastakia/ant-extensions"
+  },
   "author": "Adarsh Pastakia <adarshpastakia@outlook.com>",
   "license": "MIT",
   "main": "dist/index.js",
