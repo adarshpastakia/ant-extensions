@@ -27,7 +27,7 @@ export interface IProps extends IInputProps {
 }
 
 /**
- * Date selector for selecting relative dates
+ * Date selector for selecting relative date range
  */
 export const RelativeRangePicker = React.forwardRef<Input, IProps>((props, ref) => {
   return <BasePicker {...props} ref={ref} pickerEl={RangeDropdown} />;

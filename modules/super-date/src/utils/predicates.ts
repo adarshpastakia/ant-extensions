@@ -1,3 +1,8 @@
+// @author    : Adarsh Pastakia
+// @version   : 0.0.1
+// @copyright : 2020
+// @license   : MIT
+
 import { isValid, parseISO } from "date-fns";
 
 export const isUndefined = (value: AnyObject): value is undefined => {
