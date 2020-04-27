@@ -112,7 +112,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
     "start:storybook": "start-storybook -p 6003",
-    "start:lerna": "lerna run start --stream",
+    "start:lerna": "lerna run start --parallel",
     "start:test": "yarn build:test --watch",
     "start": "npm-run-all -c --parallel start:lerna start:test start:storybook",
     "prebuild": "lerna run build --stream",
