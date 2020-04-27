@@ -1,0 +1,39 @@
+{
+  "placeholder": "Search term...",
+  "label": {
+    "filters": "Filters",
+    "all_filters": "All Filters",
+    "field": "Field",
+    "exclude": "Exclude",
+    "operator": "Operator",
+    "value": "Value",
+    "label": "Label",
+    "add": "Add Filter",
+    "edit": "Edit",
+    "invert": "Invert Include/Exclude",
+    "remove_all": "Remove All",
+    "enable_all": "Enable All",
+    "disable_all": "Disable All",
+    "remove": "Remove",
+    "enable": "Enable",
+    "disable": "Disable",
+    "include": "Include",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "operator": {
+    "EXISTS": "Exists",
+    "IS": "Is",
+    "IN": "In",
+    "LT": "<",
+    "GT": ">",
+    "LTE": "≤",
+    "GTE": "≥",
+    "CONTAINS": "Includes",
+    "STARTS": "Starts with",
+    "ENDS": "Ends with",
+    "WITHIN": "Within",
+    "BETWEEN": "Between"
+  }
+}

@@ -1,0 +1,86 @@
+// @author    : Adarsh Pastakia
+// @version   : 0.0.1
+// @copyright : 2020
+// @license   : MIT
+@import "~antd/lib/style/themes/index";
+
+.ant-ext-sb {
+  &__searchBar {
+    display: grid;
+    grid-template-areas: "input-group addon-suffix actions";
+    grid-template-columns: 1fr auto auto;
+    grid-gap: 4px;
+
+    .ant-input-group {
+      white-space: nowrap;
+    }
+
+    .ant-select,
+    .ant-input,
+    .ant-btn {
+      &:hover,
+      &:focus,
+      &-focused {
+        z-index: 10;
+      }
+    }
+  }
+
+  &__inputGroup {
+    grid-area: input-group;
+
+    &.ant-input-group.ant-input-group-compact {
+      display: grid;
+      grid-template-areas: "toggle addon-prefix input";
+      grid-template-columns: auto auto 1fr;
+    }
+  }
+
+  &__filterToggle {
+    grid-area: toggle;
+    z-index: 5;
+
+    .ant-badge {
+      vertical-align: 4px;
+      &-count {
+        background-color: @disabled-color;
+        font-size: 9px;
+        min-width: 14px;
+        height: 14px;
+        line-height: 14px;
+        border-radius: 14px;
+        margin-inline-end: 4px;
+      }
+    }
+    &.ant-btn-primary {
+      .ant-badge .ant-badge-count {
+        background-color: @primary-color;
+        color: @white;
+      }
+    }
+
+    &--label {
+      display: inline-block;
+      max-width: 60px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__searchInput {
+    grid-area: input;
+  }
+
+  &__addonPrefix {
+    grid-area: addon-prefix;
+  }
+
+  &__addonSuffix {
+    grid-area: addon-suffix;
+  }
+
+  &__actions {
+    grid-area: actions;
+  }
+}

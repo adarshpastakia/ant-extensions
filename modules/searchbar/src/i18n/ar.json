@@ -1,0 +1,39 @@
+{
+  "placeholder": "مصطلح البحث...",
+  "label": {
+    "filters": "مرشحات",
+    "all_filters": "جميع المرشحات",
+    "field": "حقل",
+    "exclude": "استبعد",
+    "operator": "المشغل أو العامل",
+    "value": "القيمة",
+    "label": "ابيl",
+    "add": "إضافة مرشح",
+    "edit": "Edit",
+    "invert": "Invert Include/Exclude",
+    "remove_all": "حذف الكل",
+    "enable_all": "تمكين الكل",
+    "disable_all": "أوقف عمل الكل",
+    "remove": "إزالة",
+    "enable": "ممكن",
+    "disable": "تعطيل",
+    "include": "تتضمن",
+    "apply": "تطبيق",
+    "cancel": "إلغاء",
+    "delete": "حذف"
+  },
+  "operator": {
+    "EXISTS": "موجود",
+    "IS": "يكون",
+    "IN": "في",
+    "LT": "<",
+    "GT": ">",
+    "LTE": "≤",
+    "GTE": "≥",
+    "CONTAINS": "يشمل",
+    "STARTS": "ابدا ب",
+    "ENDS": "ينتهي مع",
+    "WITHIN": "في غضون",
+    "BETWEEN": "بين هذا وذاك"
+  }
+}
