@@ -26,7 +26,7 @@ export const RelativeForm: React.FC<BaseProps> = React.memo(({ value, onChange }
   useEffect(() => {
     if (value && value.includes("|") && !value.includes(DateParts.NOW)) {
       const [start, end] = value.split("|");
-      if (isDateLike(start) && isDateLike(end)) {
+      if (start !== end && isDateLike(start) && isDateLike(end)) {
         setStart(start);
         setEnd(end);
       }
