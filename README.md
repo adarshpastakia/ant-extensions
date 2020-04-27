@@ -21,11 +21,11 @@
 
 ### Packages
 
-- ##### `super-date`: Relative date and range picker
+- ##### [super-date](./modules/super-date/README.md): Relative date and range picker
     ![npm (scoped)](https://img.shields.io/npm/v/@ant-extensions/super-date?logo=npm&style=flat-square&labelColor=363636)
     ![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/@ant-extensions/super-date?style=flat-square&labelColor=363636)
 
 
-- ##### `searchbar`: Kibana style search bar with filters
+- ##### [searchbar](./modules/searchbar/README.md): Kibana style search bar with filters
     ![npm (scoped)](https://img.shields.io/npm/v/@ant-extensions/searchbar?logo=npm&style=flat-square&labelColor=363636)
     ![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/@ant-extensions/searchbar?style=flat-square&labelColor=363636)
