@@ -200,6 +200,10 @@ export const superDateType = (dt?: string): Type => {
     } else {
       return Type.RELATIVE;
     }
+  } else {
+    if (isDate(dt)) {
+      return Type.ABSOLUTE;
+    }
   }
   return Type.QUICK;
 };

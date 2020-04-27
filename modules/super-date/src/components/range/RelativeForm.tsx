@@ -6,10 +6,10 @@
 import { Button, Col, Form, Row } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { makeSuperDate } from "../../utils/dateUtils";
+import { makeSuperDate, superDateType } from "../../utils/dateUtils";
 import { I18nKey } from "../../utils/i18nKey";
 import { isDateLike } from "../../utils/predicates";
-import { BaseProps, DateParts, DateValue } from "../../utils/types";
+import { BaseProps, DateValue, Type } from "../../utils/types";
 import { RelativeInput } from "../common/RelativeInput";
 
 const fieldProps = {
@@ -24,12 +24,10 @@ export const RelativeForm: React.FC<BaseProps> = React.memo(({ value, onChange }
   const [_end, setEnd] = useState<DateValue>("$hour-1");
 
   useEffect(() => {
-    if (value && value.includes("|") && !value.includes(DateParts.NOW)) {
+    if (value && superDateType(value) === Type.RELATIVE) {
       const [start, end] = value.split("|");
-      if (start !== end && isDateLike(start) && isDateLike(end)) {
-        setStart(start);
-        setEnd(end);
-      }
+      setStart(start);
+      setEnd(end);
     }
   }, [value]);
 
