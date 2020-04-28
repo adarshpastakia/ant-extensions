@@ -21,9 +21,7 @@ export const FilterToggle: React.FC<IProps> = React.memo(
     return (
       <Button
         className="ant-ext-sb__filterToggle"
-        icon={
-          <Badge showZero count={count} overflowCount={25} />
-        }
+        icon={<Badge showZero count={count} overflowCount={25} />}
         ghost={!collapsed}
         onClick={onToggle}
         type={collapsed ? "default" : "primary"}
@@ -34,3 +32,4 @@ export const FilterToggle: React.FC<IProps> = React.memo(
     );
   }
 );
+FilterToggle.displayName = "FilterToggle";

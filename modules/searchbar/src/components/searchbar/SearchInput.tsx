@@ -35,3 +35,4 @@ export const SearchInput: React.FC<IProps> = React.memo(({ query }) => {
     </Input.Group>
   );
 });
+SearchInput.displayName = "SearchInput";

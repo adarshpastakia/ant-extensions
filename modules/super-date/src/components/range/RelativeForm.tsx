@@ -8,7 +8,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { makeSuperDate, superDateType } from "../../utils/dateUtils";
 import { I18nKey } from "../../utils/i18nKey";
-import { isDateLike } from "../../utils/predicates";
 import { BaseProps, DateValue, Type } from "../../utils/types";
 import { RelativeInput } from "../common/RelativeInput";
 
