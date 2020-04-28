@@ -5,7 +5,7 @@
 ![Forks](https://img.shields.io/github/forks/adarshpastakia/ant-extensions.svg?logoColor=blue&style=social&logo=github "GitHub Forks")
 ![Issues](https://img.shields.io/github/issues/adarshpastakia/ant-extensions.svg?logoColor=blue&style=social&logo=github "GitHub Issues")
 
-![license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&logo=none)
+![license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge&labelColor=363636&logo=none)
 ![Build](https://img.shields.io/travis/adarshpastakia/ant-extensions/master.svg?style=for-the-badge&logo=travis&labelColor=363636&label=Travis%20CI)
 ![Coverage](https://img.shields.io/codecov/c/github/adarshpastakia/ant-extensions/master.svg?style=for-the-badge&logo=codecov&labelColor=363636&label=Code%20Cov)
 
