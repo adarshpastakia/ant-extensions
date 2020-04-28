@@ -3,49 +3,56 @@
 // @copyright : 2020
 // @license   : MIT
 
-import { render } from "@testing-library/react";
-import expect from "expect";
-import i18next from "i18next";
+import { fireEvent, render, RenderResult } from "@testing-library/react";
 import React from "react";
-import { I18nextProvider, initReactI18next } from "react-i18next";
-import { RelativeDatePicker } from "../src";
-
-i18next
-  // pass the i18n instance to react-i18next.
-  .use(initReactI18next)
-  // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
-  .init({
-    resources: {
-      en: {}
-    },
-    defaultNS: "core",
-    fallbackLng: ["en"],
-    keySeparator: ".",
-
-    interpolation: {
-      escapeValue: false // not needed for react as it escapes by default
-    }
-  });
-i18next.languages = ["en", "ar"];
+import { TestWrapper } from "../../../jest/TestWrapper";
+import { DateUtils, RelativeDatePicker } from "../src";
 
 describe("RelativeDatePicker", () => {
-  const { container, rerender, unmount } = render(
-    <I18nextProvider i18n={i18next}>
-      <RelativeDatePicker value="$now" />
-    </I18nextProvider>
-  );
+  let fragment: RenderResult;
+  const initialValue = "$now";
 
-  afterAll(unmount);
+  beforeEach(() => {
+    fragment = render(<RelativeDatePicker value={initialValue} />, {
+      wrapper: TestWrapper
+    });
+  });
+
+  afterAll(() => {
+    fragment.unmount();
+  });
 
   it("should render", (done) => {
-    expect(container).toMatchSnapshot();
+    expect(fragment.container).toMatchSnapshot();
+    expect(fragment.queryByDisplayValue(DateUtils.label(initialValue))).not.toBeNull();
     done();
   });
 
-  it("should change value", (done) => {
-    rerender(<RelativeDatePicker value="$week" />);
-    expect(container).toMatchSnapshot();
+  it("should set quick value", (done) => {
+    const newValue = "$week";
+    fragment.rerender(<RelativeDatePicker value={newValue} />);
+    expect(fragment.container).toMatchSnapshot();
+    expect(fragment.queryByDisplayValue(DateUtils.label(newValue))).not.toBeNull();
+
+    const inputEl = fragment.getByTestId("input-el");
+    fireEvent.click(inputEl);
+    expect(fragment.baseElement.querySelector(".ant-tabs")).not.toBeNull();
+    expect(fragment.getByTestId("tab-quick")).toHaveClass("ant-tabs-tabpane-active");
+
+    done();
+  });
+
+  it("should set absolute value", (done) => {
+    const newValue = "2020-01-01T00:00:00.000Z";
+    fragment.rerender(<RelativeDatePicker value={newValue} />);
+    expect(fragment.container).toMatchSnapshot();
+    expect(fragment.queryByDisplayValue(DateUtils.label(newValue))).not.toBeNull();
+
+    const inputEl = fragment.getByTestId("input-el");
+    fireEvent.click(inputEl);
+    expect(fragment.baseElement.querySelector(".ant-tabs")).not.toBeNull();
+    expect(fragment.getByTestId("tab-absolute")).toHaveClass("ant-tabs-tabpane-active");
+
     done();
   });
 

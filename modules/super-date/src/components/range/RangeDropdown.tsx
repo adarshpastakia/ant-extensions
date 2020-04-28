@@ -31,13 +31,13 @@ export const RangeDropdown: React.FC<
         popup && popup.forceUpdate();
       }}
     >
-      <Tabs.TabPane key={Type.QUICK} tab={t("label.quick")}>
+      <Tabs.TabPane key={Type.QUICK} tab={t("label.quick")} data-testid="tab-quick">
         <RangePresets {...props} />
       </Tabs.TabPane>
-      <Tabs.TabPane key={Type.RELATIVE} tab={t("label.relative")}>
+      <Tabs.TabPane key={Type.RELATIVE} tab={t("label.relative")} data-testid="tab-relative">
         <RelativeForm {...props} />
       </Tabs.TabPane>
-      <Tabs.TabPane key={Type.ABSOLUTE} tab={t("label.absolute")}>
+      <Tabs.TabPane key={Type.ABSOLUTE} tab={t("label.absolute")} data-testid="tab-absolute">
         <RangePicker {...props} />
       </Tabs.TabPane>
     </Tabs>

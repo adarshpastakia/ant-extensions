@@ -3,7 +3,7 @@
 // @copyright : 2020
 // @license   : MIT
 
-import { Input, Popover, Tooltip } from "antd";
+import { Input, Popover, Tabs, Tooltip } from "antd";
 import i18next from "i18next";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { I18nextProvider } from "react-i18next";

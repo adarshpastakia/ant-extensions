@@ -20,6 +20,7 @@ export const DateInput = React.forwardRef<Input, Omit<InputProps, "onChange">>(
         {...props}
         readOnly
         ref={ref}
+        data-testid="input-el"
         disabled={isDisabled}
         value={displayLabel || ""}
         suffix={<CalendarOutlined />}

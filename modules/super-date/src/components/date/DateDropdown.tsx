@@ -30,10 +30,10 @@ export const DateDropdown: React.FC<
         popup && popup.forceUpdate();
       }}
     >
-      <Tabs.TabPane key={Type.QUICK} tab={t("label.quick")}>
+      <Tabs.TabPane key={Type.QUICK} tab={t("label.quick")} data-testid="tab-quick">
         <DatePresets {...props} />
       </Tabs.TabPane>
-      <Tabs.TabPane key={Type.ABSOLUTE} tab={t("label.absolute")}>
+      <Tabs.TabPane key={Type.ABSOLUTE} tab={t("label.absolute")} data-testid="tab-absolute">
         <DatePicker {...props} />
       </Tabs.TabPane>
     </Tabs>
