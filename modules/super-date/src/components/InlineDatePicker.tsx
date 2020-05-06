@@ -5,7 +5,9 @@
 
 import { DatePicker } from "antd";
 import { DatePickerProps } from "antd/lib/date-picker";
+import i18next from "i18next";
 import React, { useLayoutEffect, useRef } from "react";
+import { I18nextProvider } from "react-i18next";
 
 export const InlineDatePicker: React.FC<DatePickerProps> = React.forwardRef<
   React.Component,
@@ -21,15 +23,17 @@ export const InlineDatePicker: React.FC<DatePickerProps> = React.forwardRef<
   }, []);
 
   return (
-    <div ref={refContainer} className="ant-ext-sd__inlinePicker">
-      <DatePicker
-        {...props}
-        ref={ref}
-        open
-        inputReadOnly
-        getPopupContainer={() => refPicker.current}
-      />
-    </div>
+    <I18nextProvider i18n={i18next}>
+      <div ref={refContainer} className="ant-ext-sd__inlinePicker">
+        <DatePicker
+          {...props}
+          ref={ref}
+          open
+          inputReadOnly
+          getPopupContainer={() => refPicker.current}
+        />
+      </div>
+    </I18nextProvider>
   );
 });
 InlineDatePicker.displayName = "InlineDatePicker";

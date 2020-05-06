@@ -5,7 +5,9 @@
 
 import { DatePicker } from "antd";
 import { RangePickerProps } from "antd/lib/date-picker";
+import i18next from "i18next";
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { I18nextProvider } from "react-i18next";
 
 const { RangePicker } = DatePicker;
 
@@ -56,17 +58,19 @@ export const InlineRangePicker: React.FC<RangePickerProps> = React.forwardRef<
   );
 
   return (
-    <div ref={refContainer} className="ant-ext-sd__inlinePicker" onMouseDownCapture={resetValue}>
-      <RangePicker
-        {...props}
-        open
-        ref={refRangePicker}
-        inputReadOnly
-        value={_value as AnyObject}
-        onCalendarChange={doUpdate}
-        getPopupContainer={() => refPicker.current}
-      />
-    </div>
+    <I18nextProvider i18n={i18next}>
+      <div ref={refContainer} className="ant-ext-sd__inlinePicker" onMouseDownCapture={resetValue}>
+        <RangePicker
+          {...props}
+          open
+          ref={refRangePicker}
+          inputReadOnly
+          value={_value as AnyObject}
+          onCalendarChange={doUpdate}
+          getPopupContainer={() => refPicker.current}
+        />
+      </div>
+    </I18nextProvider>
   );
 });
 InlineRangePicker.displayName = "InlineRangePicker";
