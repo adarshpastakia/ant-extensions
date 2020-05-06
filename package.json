@@ -81,7 +81,6 @@
     "setupFilesAfterEnv": [
       "./jest/setup.ts"
     ],
-    "testRegex": "(/__tests__/.*\\.(test|spec))\\.[jt]sx?$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -103,11 +102,12 @@
       "<rootDir>/node_modules"
     ],
     "collectCoverageFrom": [
-      "modules/**/src/**/*.{ts,tsx}",
-      "!**/*.d.ts",
-      "!**/*.test.{js,ts,tsx}",
-      "!**/*.stories.{js,ts,tsx}",
-      "!**/node_modules/**"
+      "modules/**/src/**/*.{ts,tsx}"
+    ],
+    "coveragePathIgnorePatterns": [
+      "__tests__/",
+      "__stories__/",
+      "node_modules/"
     ],
     "coverageDirectory": "<rootDir>/coverage",
     "coverageReporters": [
@@ -119,16 +119,16 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
-    "start:storybook": "start-storybook -p 6003",
     "start:lerna": "lerna run start --parallel",
-    "start:test": "yarn build:test --watch",
-    "start": "npm-run-all -c --parallel start:lerna start:test start:storybook",
+    "start:test": "yarn build:test --watchAll",
+    "watch": "npm-run-all -c --parallel start:lerna start:test",
+    "start": "start-storybook -p 6003",
     "prebuild": "lerna run build --stream",
     "build:lib": "lerna run build:lib --stream",
     "build:style": "lerna run build:style --stream",
     "build:test": "yarn run:test --json --outputFile=./.storybook/jest-test-results.json",
     "build:storybook": "build-storybook -o ./build",
-    "build": "npm-run-all build:test build:storybook",
+    "build": "npm-run-all build:lib build:test build:storybook",
     "dist": "lerna run dist --stream",
     "postdist": "lerna publish patch --tag-version-prefix='' --yes",
     "run:test": "jest --ci --runInBand --verbose --detectOpenHandles",
