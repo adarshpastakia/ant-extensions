@@ -4,6 +4,7 @@
 // @license   : MIT
 
 import { RelativeRangePicker } from "../src";
+import "./examples/common/i18n";
 
 export default {
   title: "Date Selector/RelativeRangePicker",

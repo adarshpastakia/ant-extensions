@@ -7,16 +7,17 @@ import i18next from "i18next";
 import I18nextBrowserLanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 
-export const I18nKey = "super-date";
 i18next
   .use(I18nextBrowserLanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
       en: {
-        [I18nKey]: {
-          labelDate: "Relative Date",
-          labelRange: "Relative Range"
+        core: {
+          labelDate: "Inline Date",
+          labelRange: "Inline Range",
+          labelInputDate: "Relative Date",
+          labelInputRange: "Relative Range"
         },
         SuperDate: {
           now: {
@@ -25,7 +26,7 @@ i18next
         }
       },
       ar: {
-        [I18nKey]: {
+        core: {
           label: "Basic-AR"
         }
       }

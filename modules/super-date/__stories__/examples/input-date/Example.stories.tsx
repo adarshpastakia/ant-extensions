@@ -8,10 +8,9 @@ import { boolean, select } from "@storybook/addon-knobs";
 import { ConfigProvider, Form } from "antd";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { I18nKey } from "../common/i18n";
 
 export const Example = () => {
-  const { i18n, t } = useTranslation(I18nKey);
+  const { i18n, t } = useTranslation();
   const [value, onChange] = useState<string | undefined>("$now");
 
   const size = select<AnyObject>("size", [undefined, "small", "middle", "large"], undefined);
@@ -20,7 +19,7 @@ export const Example = () => {
     <ConfigProvider direction={i18n.dir()}>
       <div style={{ padding: "2em", maxWidth: 450, margin: "auto" }}>
         <Form layout="vertical" size={size}>
-          <Form.Item label={t("labelDate")}>
+          <Form.Item label={t("labelInputDate")}>
             <RelativeDatePicker
               value={value}
               onChange={onChange}
