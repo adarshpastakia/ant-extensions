@@ -3,15 +3,16 @@
 // @copyright : 2020
 // @license   : MIT
 
-export enum Type {
+export enum EnumFieldType {
   STRING = "string",
-  NUMBER = "number",
+  INT = "int",
+  FLOAT = "float",
   BOOLEAN = "boolean",
   DATE = "date",
   GEO = "geo"
 }
 
-export enum Operator {
+export enum EnumOperator {
   EXISTS = "EXISTS",
   IS = "IS",
   IN = "IN",
@@ -26,36 +27,65 @@ export enum Operator {
   BETWEEN = "BETWEEN"
 }
 
-export const TypeOperators: { [key in Type]: Operator[] } = {
-  [Type.STRING]: [Operator.IS, Operator.IN, Operator.CONTAINS, Operator.STARTS, Operator.ENDS],
-  [Type.NUMBER]: [
-    Operator.IS,
-    Operator.BETWEEN,
-    Operator.LT,
-    Operator.GT,
-    Operator.LTE,
-    Operator.GTE
+/**
+ * @internal
+ */
+export const TypeOperators: { [key in EnumFieldType]: EnumOperator[] } = {
+  [EnumFieldType.STRING]: [
+    EnumOperator.IS,
+    EnumOperator.IN,
+    EnumOperator.CONTAINS,
+    EnumOperator.STARTS,
+    EnumOperator.ENDS
   ],
-  [Type.BOOLEAN]: [Operator.IS],
-  [Type.DATE]: [Operator.BETWEEN, Operator.LT, Operator.GT, Operator.LTE, Operator.GTE],
-  [Type.GEO]: []
+  [EnumFieldType.INT]: [
+    EnumOperator.IS,
+    EnumOperator.BETWEEN,
+    EnumOperator.LT,
+    EnumOperator.GT,
+    EnumOperator.LTE,
+    EnumOperator.GTE
+  ],
+  [EnumFieldType.FLOAT]: [
+    EnumOperator.IS,
+    EnumOperator.BETWEEN,
+    EnumOperator.LT,
+    EnumOperator.GT,
+    EnumOperator.LTE,
+    EnumOperator.GTE
+  ],
+  [EnumFieldType.BOOLEAN]: [EnumOperator.IS],
+  [EnumFieldType.DATE]: [
+    EnumOperator.BETWEEN,
+    EnumOperator.LT,
+    EnumOperator.GT,
+    EnumOperator.LTE,
+    EnumOperator.GTE
+  ],
+  [EnumFieldType.GEO]: []
 };
 
-export const OperatorValueType: { [key in Operator]: "single" | "double" | "multiple" } = {
-  [Operator.EXISTS]: "single",
-  [Operator.IS]: "single",
-  [Operator.IN]: "multiple",
-  [Operator.BETWEEN]: "double",
-  [Operator.WITHIN]: "single",
-  [Operator.STARTS]: "single",
-  [Operator.ENDS]: "single",
-  [Operator.CONTAINS]: "single",
-  [Operator.LT]: "single",
-  [Operator.GT]: "single",
-  [Operator.LTE]: "single",
-  [Operator.GTE]: "single"
+/**
+ * @internal
+ */
+export const OperatorValueType: { [key in EnumOperator]: "single" | "double" | "multiple" } = {
+  [EnumOperator.EXISTS]: "single",
+  [EnumOperator.IS]: "single",
+  [EnumOperator.IN]: "multiple",
+  [EnumOperator.BETWEEN]: "double",
+  [EnumOperator.WITHIN]: "single",
+  [EnumOperator.STARTS]: "single",
+  [EnumOperator.ENDS]: "single",
+  [EnumOperator.CONTAINS]: "single",
+  [EnumOperator.LT]: "single",
+  [EnumOperator.GT]: "single",
+  [EnumOperator.LTE]: "single",
+  [EnumOperator.GTE]: "single"
 };
 
+/**
+ * @internal
+ */
 export type FilterValue =
   | undefined
   | boolean
@@ -65,20 +95,23 @@ export type FilterValue =
   | [number, number]
   | KeyValue;
 
+/**
+ * @internal
+ */
 export type FieldValue = string | { value: string; label: string; icon?: AnyObject };
 
 export interface IFilterField {
   key: string;
   name: string;
-  type: Type;
+  type: EnumFieldType;
   values?: FieldValue[];
-  defaultOperator?: Operator;
+  defaultOperator?: EnumOperator;
   onSearch?: (q: string) => FieldValue[];
 }
 
 export interface IFilterObject {
   field: string;
-  operator: Operator;
+  operator: EnumOperator;
   value: FilterValue;
   label?: string;
   active?: boolean;
@@ -93,20 +126,95 @@ export interface IQueryObject {
 }
 
 export interface ISearchProps {
+  /**
+   * Query string
+   */
   query?: string;
-  disabled?: boolean;
-  placeholder?: string;
-  options?: JSX.Element;
+
+  /**
+   * Add-on before search input
+   */
+  addonPrefix?: JSX.Element;
+  /**
+   * Add-on after search input
+   */
+  addonSuffix?: JSX.Element;
+
+  /**
+   * Additional actions menu
+   */
   actions?: JSX.Element;
+
+  /**
+   * Hide filter bar
+   */
+  hideFilters?: boolean;
+
+  /**
+   * Disable component
+   */
+  disabled?: boolean;
+
+  /**
+   * Collapse filters
+   * @default true
+   */
   collapsed?: boolean;
+  /**
+   * On filter collapsed
+   * @param collapsed
+   */
   onCollapsed?: (collapsed: boolean) => void;
+
+  /**
+   * On search event
+   * @param queryObject
+   */
   onSearch?: (queryObject: IQueryObject) => void;
+  /**
+   * On query string change event
+   * @param query
+   */
   onQueryChange?: (query: string) => void;
 }
 
 export interface IFilterProps {
-  disabled?: boolean;
+  /**
+   * Filters list
+   * @default []
+   */
   filters?: IFilterObject[];
-  fields: IFilterField[];
-  onFilterChange?: (filters: IFilterObject[]) => void;
+
+  /**
+   * Field list
+   * (Required when filter bar enabled)
+   */
+  fields?: IFilterField[];
+
+  /**
+   * Disable component
+   */
+  disabled?: boolean;
+
+  /**
+   * On add filter
+   * @param filter
+   */
+  onFilterAdded?: (queryObject: IQueryObject) => void;
+  /**
+   * On update filter
+   * @param filter
+   */
+  onFilterUpdate?: (filter: IFilterObject) => void;
+  /**
+   * On remove filter
+   * @param filter
+   */
+  onFilterRemoved?: (queryObject: IQueryObject) => void;
+
+  /**
+   * On filters change, (add/update/delete)
+   * @param filters
+   */
+  onFilterChanged?: (filters: IFilterObject[]) => void;
 }

@@ -4,32 +4,27 @@
 // @license   : MIT
 
 import { Input } from "antd";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { I18nKey } from "../../utils/i18nKey";
+import { Context } from "../context";
 
-interface IProps {
-  query: string;
-}
-export const SearchInput: React.FC<IProps> = React.memo(({ query }) => {
+export const SearchInput: React.FC = React.memo(() => {
   const { t } = useTranslation(I18nKey);
-
-  const [_query, setQuery] = useState("");
-  useEffect(() => {
-    setQuery(query);
-  }, [query]);
+  const { query, updateQuery, doSearch } = useContext(Context);
 
   const doUpdate = useCallback((evt: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(evt.target.value);
+    updateQuery(evt.target.value);
   }, []);
 
   return (
     <Input.Group className="ant-ext-sb__searchInput" compact>
       <Input.Search
         type="search"
-        value={_query}
-        onChange={doUpdate}
+        value={query}
         enterButton
+        onChange={doUpdate}
+        onSearch={doSearch}
         placeholder={t("placeholder")}
       />
     </Input.Group>

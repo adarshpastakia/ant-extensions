@@ -4,6 +4,6 @@
 // @license   : MIT
 import "./i18n";
 
-export {Type, Operator} from "./utils/types";
+export { EnumFieldType, EnumOperator } from "./utils/types";
 export type { IFilterObject, IFilterField } from "./utils/types";
 export { SearchBar } from "./components/SearchBar";

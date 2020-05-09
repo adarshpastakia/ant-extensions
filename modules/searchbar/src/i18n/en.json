@@ -4,7 +4,6 @@
     "filters": "Filters",
     "all_filters": "All Filters",
     "field": "Field",
-    "exclude": "Exclude",
     "operator": "Operator",
     "value": "Value",
     "label": "Label",
@@ -17,10 +16,17 @@
     "remove": "Remove",
     "enable": "Enable",
     "disable": "Disable",
+    "exclude": "Exclude",
     "include": "Include",
     "apply": "Apply",
     "cancel": "Cancel",
     "delete": "Delete"
+  },
+  "validate": {
+    "field": "Field required",
+    "operator": "Operator required",
+    "value": "Value required",
+    "label": "Label required"
   },
   "operator": {
     "EXISTS": "Exists",
@@ -35,5 +41,13 @@
     "ENDS": "Ends with",
     "WITHIN": "Within",
     "BETWEEN": "Between"
+  },
+  "type": {
+    "string": "String",
+    "int": "Int",
+    "float": "Float",
+    "boolean": "Bool",
+    "date": "Date",
+    "geo": "GeoJSON"
   }
 }
