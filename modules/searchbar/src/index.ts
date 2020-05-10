@@ -7,3 +7,5 @@ import "./i18n";
 export { EnumFieldType, EnumOperator } from "./utils/types";
 export type { IFilterObject, IFilterField } from "./utils/types";
 export { SearchBar } from "./components/SearchBar";
+export { FilterBar } from "./components/FilterBar";
+export { FieldSelect } from "./components/FieldSelect";

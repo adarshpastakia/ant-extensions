@@ -6,7 +6,6 @@
 
 ### Install
 
-
 ```shell
 # Using npm
 npm install @ant-extensions/searchbar
@@ -18,3 +17,31 @@ yarn add @ant-extensions/searchbar
 ---
 
 ### Basic Usage
+
+```tsx
+import React, { useState } from "react";
+import { SearchBar } from "@ant-extensions/searchbar";
+
+export const Tester = () => {
+  return <SearchBar collapsed={false} filters={[]} fields={[]} />;
+};
+```
+
+---
+
+> `FieldSelect`
+> Select input for fields, to maintain consistency throughout the application
+>
+> ```tsx
+> import React, { useState } from "react";
+> import { Form } from "antd";
+> import { FieldSelect } from "@ant-extensions/searchbar";
+> 
+> export const Tester = () => {
+>   return (
+>     <Form.Item name="field">
+>       <FieldSelect value={"fieldKey"} onChange={(fieldKey) => "do something"} fields={[]} />;
+>     </Form.Item>
+>   );
+> };
+> ```

@@ -27,7 +27,7 @@ export const Example = () => {
               label: "My Label87",
               negative: true,
               operator: EnumOperator.CONTAINS,
-              pinned: false,
+              isTimeField: false,
               required: false,
               value: "test"
             },
@@ -37,7 +37,7 @@ export const Example = () => {
               label: "My Label",
               negative: false,
               operator: EnumOperator.CONTAINS,
-              pinned: true,
+              isTimeField: false,
               required: false,
               value: "test"
             },
@@ -46,7 +46,7 @@ export const Example = () => {
               field: "date",
               negative: false,
               operator: EnumOperator.BETWEEN,
-              pinned: false,
+              isTimeField: true,
               required: true,
               value: "$week|$now"
             }

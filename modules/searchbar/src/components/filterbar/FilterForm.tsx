@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { I18nKey } from "../../utils/i18nKey";
 import { EnumOperator, IFilterField, IFilterObject, TypeOperators } from "../../utils/types";
 import { Context } from "../context";
-import { FieldOption } from "./FieldOption";
+import { FieldSelect } from "../FieldSelect";
 import { FilterValue } from "./FilterValue";
 
 export const FilterForm: React.FC<{
@@ -78,59 +78,51 @@ export const FilterForm: React.FC<{
   return (
     <Card className="ant-ext-sb__filterForm">
       <Form form={form} layout="vertical" size="small" onFinish={doSave}>
-        {!filter.required && (
-          <Row gutter={[8, 8]}>
-            <Col flex="auto">
-              <Form.Item
-                name="field"
-                label={t("label.field")}
-                rules={[
-                  {
-                    required: true,
-                    message: t("validate.field")
-                  }
-                ]}
-              >
-                <Select showSearch className="ant-ext-sb__selectField" onSelect={fieldChanged}>
-                  {fields.map((f) => (
-                    <Select.Option value={f.key} key={f.key} className="ant-ext-sb__fieldOption">
-                      <FieldOption field={f} />
+        <Row gutter={[8, 8]}>
+          <Col flex="auto">
+            <Form.Item
+              name="field"
+              label={t("label.field")}
+              rules={[
+                {
+                  required: true,
+                  message: t("validate.field")
+                }
+              ]}
+            >
+              <FieldSelect fields={fields} onSelect={fieldChanged} disabled={filter.required} />
+            </Form.Item>
+          </Col>
+          <Col style={{ textAlign: "center" }}>
+            <Form.Item name="negative" label={t("label.exclude")} valuePropName="checked">
+              <Switch className="ant-ext-sb__excludeSwitch" checkedChildren="NOT" />
+            </Form.Item>
+          </Col>
+          <Col flex="auto">
+            <Form.Item
+              name="operator"
+              label={t("label.operator")}
+              rules={[
+                {
+                  required: true,
+                  message: t("validate.operator")
+                }
+              ]}
+            >
+              <Select onSelect={(v) => setOperator(v as AnyObject)}>
+                <Select.Option value={EnumOperator.EXISTS}>
+                  {t(`operator.${EnumOperator.EXISTS}`)}
+                </Select.Option>
+                {fieldObject &&
+                  TypeOperators[fieldObject.type].map((op) => (
+                    <Select.Option value={op} key={op}>
+                      {t(`operator.${op}`)}
                     </Select.Option>
                   ))}
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col style={{ textAlign: "center" }}>
-              <Form.Item name="negative" label={t("label.exclude")} valuePropName="checked">
-                <Switch className="ant-ext-sb__excludeSwitch" checkedChildren="NOT" />
-              </Form.Item>
-            </Col>
-            <Col flex="auto">
-              <Form.Item
-                name="operator"
-                label={t("label.operator")}
-                rules={[
-                  {
-                    required: true,
-                    message: t("validate.operator")
-                  }
-                ]}
-              >
-                <Select onSelect={(v) => setOperator(v as AnyObject)}>
-                  <Select.Option value={EnumOperator.EXISTS}>
-                    {t(`operator.${EnumOperator.EXISTS}`)}
-                  </Select.Option>
-                  {fieldObject &&
-                    TypeOperators[fieldObject.type].map((op) => (
-                      <Select.Option value={op} key={op}>
-                        {t(`operator.${op}`)}
-                      </Select.Option>
-                    ))}
-                </Select>
-              </Form.Item>
-            </Col>
-          </Row>
-        )}
+              </Select>
+            </Form.Item>
+          </Col>
+        </Row>
 
         {operator && operator !== EnumOperator.EXISTS && (
           <Form.Item
@@ -173,8 +165,8 @@ export const FilterForm: React.FC<{
       </Form>
       <Row justify="space-between">
         <Col>
-          {index !== undefined && !filter.required && !filter.pinned && (
-            <Button size="small" type="danger" onClick={() => removeFilter(index)}>
+          {index !== undefined && !filter.required && (
+            <Button size="small" danger onClick={() => removeFilter(index)}>
               {t("label.delete")}
             </Button>
           )}

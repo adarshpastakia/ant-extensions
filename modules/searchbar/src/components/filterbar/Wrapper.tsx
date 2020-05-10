@@ -3,6 +3,7 @@
 // @copyright : $date.year
 // @license   : MIT
 
+import { TimeFilterPicker } from "@ant-extensions/super-date";
 import React, { useContext, useEffect, useMemo } from "react";
 import { IFilterProps } from "../../utils/types";
 import { Context } from "../context";
@@ -12,7 +13,7 @@ import { GlobalMenu } from "./GlobalMenu";
 
 export const FilterbarWrapper: React.FC<IFilterProps> = React.memo(
   ({ disabled = false, fields = [] }) => {
-    const { filters } = useContext(Context);
+    const { filters, updateFilter } = useContext(Context);
 
     useEffect(() => {
       if (!fields || fields.length === 0) {
@@ -23,10 +24,10 @@ export const FilterbarWrapper: React.FC<IFilterProps> = React.memo(
     const sorted = useMemo(
       () =>
         filters.sort((a, b) => {
+          if (a.isTimeField) return -1;
+          if (b.isTimeField) return 1;
           if (a.required) return -1;
           if (b.required) return 1;
-          if (a.pinned) return -1;
-          if (b.pinned) return 1;
           return 0;
         }),
       [filters]
@@ -35,9 +36,16 @@ export const FilterbarWrapper: React.FC<IFilterProps> = React.memo(
     return (
       <div className="ant-ext-sb__filterBar">
         <GlobalMenu disabled={disabled} />
-        {sorted.map((filter, index) => (
-          <FilterTag key={index} index={index} filter={filter} />
-        ))}
+        {sorted.map((filter, index) =>
+          filter.isTimeField ? (
+            <TimeFilterPicker
+              value={filter.value ? filter.value.toString() : "$now"}
+              onChange={(v) => updateFilter(index, { value: v })}
+            />
+          ) : (
+            <FilterTag key={index} index={index} filter={filter} />
+          )
+        )}
         <AddButton disabled={disabled} />
       </div>
     );

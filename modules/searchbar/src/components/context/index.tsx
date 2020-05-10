@@ -90,7 +90,7 @@ export const ContextProvider: React.FC<Partial<ISearchProps & IFilterProps>> = (
   };
 
   const removeAll = () => {
-    setFilters(filters.filter((f) => f.required || f.pinned));
+    setFilters(filters.filter((f) => f.required || f.isTimeField));
   };
 
   return (

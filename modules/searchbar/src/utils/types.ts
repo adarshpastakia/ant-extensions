@@ -115,7 +115,7 @@ export interface IFilterObject {
   value: FilterValue;
   label?: string;
   active?: boolean;
-  pinned?: boolean;
+  isTimeField?: boolean;
   negative?: boolean;
   required?: boolean;
 }

@@ -22,7 +22,7 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
   ({ index, filter }) => {
     const { t } = useTranslation(I18nKey);
 
-    const { field, operator, value, label, active, negative, pinned, required } = filter;
+    const { field, operator, value, label, active, negative, required } = filter;
 
     const [open, setOpen] = useState(false);
     const [editing, setEditing] = useState(required);
@@ -52,14 +52,12 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
           <Menu.Item onClick={() => updateFilter(index, { negative: !negative })}>
             <Icon component={TwoTone} /> {t(`label.${negative ? "include" : "exclude"}`)}
           </Menu.Item>
-          {!pinned && (
-            <Menu.Item
-              className="ant-typography ant-typography-danger"
-              onClick={() => removeFilter(index)}
-            >
-              <DeleteOutlined /> {t("label.remove")}
-            </Menu.Item>
-          )}
+          <Menu.Item
+            className="ant-typography ant-typography-danger"
+            onClick={() => removeFilter(index)}
+          >
+            <DeleteOutlined /> {t("label.remove")}
+          </Menu.Item>
         </Menu>
       ),
       [active, negative, index]
@@ -84,7 +82,7 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
         color={negative ? "red" : "blue"}
         data-active={active}
         data-negative={negative}
-        closable={!required && !pinned}
+        closable={!required}
         onClose={() => removeFilter(index)}
       >
         {!required && (
