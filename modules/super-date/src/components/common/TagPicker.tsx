@@ -60,24 +60,22 @@ export const TagPicker: React.FC<AnyObject> = ({
 
   return (
     <I18nextProvider i18n={i18next}>
-      <div className="ant-ext-sd__tag">
-        <Tooltip overlayClassName="ant-ext-sd__tooltip" title={DateUtils.toString(_value)}>
-          <Popover
-            ref={refDropdown}
-            visible={visible}
-            destroyTooltipOnHide
-            onVisibleChange={toggleVisible}
-            overlayClassName="ant-ext-sd__popover"
-            content={!readOnly && <E dropdown={refDropdown} value={value} onChange={doUpdate} />}
-            trigger="click"
-            placement="bottomLeft"
-          >
-            <Tag color="blue" icon={<FieldTimeOutlined />}>
-              {displayLabel}
-            </Tag>
-          </Popover>
-        </Tooltip>
-      </div>
+      <Tooltip overlayClassName="ant-ext-sd__tooltip" title={DateUtils.toString(_value)}>
+        <Popover
+          ref={refDropdown}
+          visible={visible}
+          destroyTooltipOnHide
+          onVisibleChange={toggleVisible}
+          overlayClassName="ant-ext-sd__popover"
+          content={!readOnly && <E dropdown={refDropdown} value={value} onChange={doUpdate} />}
+          trigger="click"
+          placement="bottomLeft"
+        >
+          <Tag color="blue" icon={<FieldTimeOutlined />} className="ant-ext-sd__tag">
+            {displayLabel}
+          </Tag>
+        </Popover>
+      </Tooltip>
     </I18nextProvider>
   );
 };
