@@ -51,3 +51,4 @@ export const FilterbarWrapper: React.FC<IFilterProps> = React.memo(
     );
   }
 );
+FilterbarWrapper.displayName = "FilterbarWrapper";

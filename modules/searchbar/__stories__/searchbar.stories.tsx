@@ -8,7 +8,8 @@ import { SearchBar } from "../src";
 export default {
   title: "Search Bar",
   component: SearchBar,
-  parameters: {}
+  parameters: {
+    jest: ["SearchBar.test.tsx"]}
 };
 
 export { Example } from "./examples/SearchBar.stories";

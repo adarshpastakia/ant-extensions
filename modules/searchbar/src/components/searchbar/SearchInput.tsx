@@ -15,7 +15,7 @@ export const SearchInput: React.FC = React.memo(() => {
 
   const doUpdate = useCallback((evt: React.ChangeEvent<HTMLInputElement>) => {
     updateQuery(evt.target.value);
-  }, []);
+  }, [updateQuery]);
 
   return (
     <Input.Group className="ant-ext-sb__searchInput" compact>

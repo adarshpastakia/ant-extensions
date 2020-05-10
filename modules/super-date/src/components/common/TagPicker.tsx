@@ -51,7 +51,7 @@ export const TagPicker: React.FC<AnyObject> = ({
         onVisibleChange && onVisibleChange(v);
       }
     },
-    [readOnly, onVisibleChange]
+    [onVisibleChange, isDisabled]
   );
   const displayLabel = useMemo(() => (value ? parseDateLabel(value.toString()) : ""), [
     value,

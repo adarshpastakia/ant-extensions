@@ -28,3 +28,4 @@ export const FieldSelect = React.memo(
     );
   })
 );
+FieldSelect.displayName = "FieldSelect";

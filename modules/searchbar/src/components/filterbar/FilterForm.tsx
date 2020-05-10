@@ -32,7 +32,7 @@ export const FilterForm: React.FC<{
       setOperator(filter.operator);
       setField(fields.find((f) => f.key === filter.field));
     }
-  }, []);
+  }, [filter, fields, form]);
 
   const fieldChanged = useCallback(
     (fieldKey) => {
@@ -49,7 +49,7 @@ export const FilterForm: React.FC<{
         setField(_fieldObject);
       }
     },
-    [fields]
+    [fields, form]
   );
 
   const doSave = useCallback(() => {
@@ -73,7 +73,7 @@ export const FilterForm: React.FC<{
       }
       onCancel();
     });
-  }, []);
+  }, [addFilter, updateFilter, onCancel, filter, form, index]);
 
   return (
     <Card className="ant-ext-sb__filterForm">
@@ -184,3 +184,4 @@ export const FilterForm: React.FC<{
     </Card>
   );
 });
+FilterForm.displayName = "FilterForm";

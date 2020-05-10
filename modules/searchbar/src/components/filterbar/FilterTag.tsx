@@ -37,7 +37,7 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
           {value ? value.toString() : ""}
         </span>
       );
-    }, [label, field, operator, value]);
+    }, [label, field, operator, value, fields, t]);
 
     const menuOverlay = useMemo(
       () => (
@@ -60,7 +60,7 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
           </Menu.Item>
         </Menu>
       ),
-      [active, negative, index]
+      [active, negative, index, removeFilter, t, updateFilter]
     );
 
     const formOverlay = useMemo(
@@ -73,7 +73,7 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
           />
         </div>
       ),
-      [filter, index, required, editing]
+      [filter, index, required]
     );
 
     return (
@@ -107,3 +107,4 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
     );
   }
 );
+FilterTag.displayName = "FilterTag";

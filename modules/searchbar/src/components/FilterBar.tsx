@@ -30,3 +30,4 @@ export const FilterBar: React.FC<IFilterProps> = React.memo(
     );
   }
 );
+FilterBar.displayName = "FilterBar";

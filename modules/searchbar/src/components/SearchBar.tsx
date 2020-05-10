@@ -66,3 +66,4 @@ export const SearchBar: React.FC<ISearchProps & IFilterProps> = ({
     </ContextProvider>
   );
 };
+SearchBar.displayName = "SearchBar";

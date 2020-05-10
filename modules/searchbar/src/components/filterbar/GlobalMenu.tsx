@@ -46,7 +46,7 @@ export const GlobalMenu: React.FC<{ disabled: boolean }> = React.memo(({ disable
         </Menu.Item>
       </Menu>
     );
-  }, [filters]);
+  }, [filters, enableAll, removeAll, t, toggleExclude]);
 
   return (
     <Dropdown overlay={menu} trigger={["click"]} disabled={disabled || filters.length === 0}>
@@ -54,3 +54,4 @@ export const GlobalMenu: React.FC<{ disabled: boolean }> = React.memo(({ disable
     </Dropdown>
   );
 });
+GlobalMenu.displayName = "GlobalMenu";

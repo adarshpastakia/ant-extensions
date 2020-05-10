@@ -3,7 +3,6 @@
 // @copyright : 2020
 // @license   : MIT
 
-import { Input } from "antd";
 import React from "react";
 import { ChangeHandler, DateValue, IInputProps } from "../utils/types";
 import { TagPicker } from "./common/TagPicker";
@@ -29,8 +28,8 @@ export interface IProps extends IInputProps {
 /**
  * Date selector for selecting relative date range
  */
-export const TimeFilterPicker = React.forwardRef<Input, IProps>((props, ref) => {
+export const TimeFilterPicker: React.FC<IProps> = (props) => {
   return <TagPicker {...props} pickerEl={RangeDropdown} />;
-});
+};
 
 TimeFilterPicker.displayName = "TimeFilterPicker";

@@ -36,3 +36,4 @@ export const SearchbarWrapper: React.FC<ISearchProps> = React.memo(
     );
   }
 );
+SearchbarWrapper.displayName = "SearchbarWrapper";

@@ -70,3 +70,4 @@ export const FilterValue: React.FC<{
 
   return null;
 });
+FilterValue.displayName = "FilterValue";

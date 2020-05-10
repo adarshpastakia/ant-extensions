@@ -25,3 +25,4 @@ export const AddButton: React.FC<{ disabled: boolean }> = React.memo(({ disabled
     </Dropdown>
   );
 });
+AddButton.displayName = "AddButton";

@@ -39,7 +39,7 @@ export const BasePicker = React.forwardRef<Input, AnyObject>(
           onVisibleChange && onVisibleChange(v);
         }
       },
-      [readOnly, onVisibleChange]
+      [onVisibleChange, isDisabled]
     );
 
     return (

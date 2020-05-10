@@ -38,3 +38,4 @@ export const FieldOption: React.FC<{ field: IFilterField }> = React.memo(
     );
   }
 );
+FieldOption.displayName = "FieldOption";
