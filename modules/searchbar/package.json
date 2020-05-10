@@ -1,6 +1,6 @@
 {
   "name": "@ant-extensions/searchbar",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.6",
-    "@ant-extensions/super-date": "^0.0.2",
+    "@ant-extensions/super-date": "^0.0.3",
     "antd": "^4.1.4",
     "i18next": "^19.4.2",
     "react": "^16.13.1",
