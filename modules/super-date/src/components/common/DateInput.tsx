@@ -18,7 +18,6 @@ export const DateInput = React.forwardRef<Input, Omit<InputProps, "onChange">>(
     } = useTranslation(I18nKey);
     const displayLabel = useMemo(() => (value ? parseDateLabel(value.toString()) : ""), [
       value,
-
       language
     ]);
 

@@ -5,7 +5,7 @@
 
 import { Input, Popover, Tooltip } from "antd";
 import i18next from "i18next";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { I18nextProvider } from "react-i18next";
 import { DateUtils } from "../..";
 import { DateValue } from "../../utils/types";
@@ -13,11 +13,12 @@ import { withinDropdown } from "../../utils/withinDropdown";
 import { DateInput } from "./DateInput";
 
 export const BasePicker = React.forwardRef<Input, AnyObject>(
-  ({ value, onChange, onVisibleChange, readOnly, pickerEl: E, ...props }, ref) => {
+  ({ value, onChange, onVisibleChange, readOnly, disabled, pickerEl: E, ...props }, ref) => {
     const refDropdown = useRef<Popover>(null);
     const [visible, setVisible] = useState(false);
 
     const [_value, setValue] = useState(value);
+    const isDisabled = useMemo(() => disabled || readOnly, [disabled, readOnly]);
 
     useEffect(() => {
       setValue(value);
@@ -33,7 +34,7 @@ export const BasePicker = React.forwardRef<Input, AnyObject>(
 
     const toggleVisible = useCallback(
       (v) => {
-        if (!readOnly) {
+        if (!isDisabled) {
           setVisible(v);
           onVisibleChange && onVisibleChange(v);
         }
@@ -59,6 +60,8 @@ export const BasePicker = React.forwardRef<Input, AnyObject>(
                 ref={ref}
                 {...props}
                 value={value}
+                readOnly={readOnly}
+                disabled={disabled}
                 onBlur={(e) => !withinDropdown(e.relatedTarget as HTMLElement) && setVisible(false)}
               />
             </Popover>

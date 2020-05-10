@@ -15,3 +15,4 @@ export default {
 };
 
 export { Example } from "./examples/input-range/Example.stories";
+export { Filter } from "./examples/input-range/Filter.stories";
