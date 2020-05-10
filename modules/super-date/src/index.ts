@@ -8,5 +8,6 @@ export { InlineDatePicker } from "./components/InlineDatePicker";
 export { InlineRangePicker } from "./components/InlineRangePicker";
 export { RelativeDatePicker } from "./components/RelativeDatePicker";
 export { RelativeRangePicker } from "./components/RelativeRangePicker";
+export { TimeFilterPicker } from "./components/TimeFilterPicker";
 export { DateUtils } from "./utils/dateUtils";
 export { DateParts } from "./utils/types";
