@@ -3,6 +3,10 @@ node_js:
   - "13.13.0"
 sudo: false
 
+branches:
+  only:
+    - master
+
 install:
   - yarn install
   - npm install -g codecov
