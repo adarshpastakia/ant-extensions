@@ -13,6 +13,7 @@ install:
 
 script:
   - yarn bootstrap
+  - yarn build
   - yarn run test
 
 after_script:
