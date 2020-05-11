@@ -9,11 +9,12 @@ import Icon, {
   EyeInvisibleOutlined,
   EyeOutlined
 } from "@ant-design/icons";
-import { Checkbox, Dropdown, Menu, Tag } from "antd";
+import { DateUtils } from "@ant-extensions/super-date/src";
+import { Checkbox, Dropdown, Menu, Tag, Tooltip } from "antd";
 import React, { useContext, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { I18nKey } from "../../utils/i18nKey";
-import { IFilterObject } from "../../utils/types";
+import { EnumFieldType, IFilterObject } from "../../utils/types";
 import { Context } from "../context";
 import { FilterForm } from "./FilterForm";
 import { TwoTone } from "./TwoTone";
@@ -28,16 +29,29 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
     const [editing, setEditing] = useState(required);
     const { fields, updateFilter, removeFilter } = useContext(Context);
 
+    const displayValue = useMemo(() => {
+      const _field = fields.find((f) => f.key === field);
+      return _field && value ? (
+        <span>
+          {_field.type === EnumFieldType.DATE
+            ? DateUtils.label(value.toString())
+            : value
+            ? value.toString()
+            : ""}
+        </span>
+      ) : undefined;
+    }, [field, value, fields, t]);
+
     const displayLabel = useMemo(() => {
       if (label) return label;
       const _field = fields.find((f) => f.key === field);
       return (
         <span>
           {_field ? _field.name : field}&nbsp;<b>{t(`operator.${operator}`)}</b>&nbsp;
-          {value ? value.toString() : ""}
+          {displayValue}
         </span>
       );
-    }, [label, field, operator, value, fields, t]);
+    }, [label, field, operator, displayValue, fields, t]);
 
     const menuOverlay = useMemo(
       () => (
@@ -92,17 +106,19 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
             onChange={(e) => updateFilter(index, { active: e.target.checked })}
           />
         )}
-
-        <Dropdown
-          overlay={editing ? formOverlay : menuOverlay}
-          trigger={["click"]}
-          visible={open}
-          onVisibleChange={(visible) => [setOpen(visible), !visible && setEditing(required)]}
-        >
-          <span className="ant-ext-sb__filterTag--label" onClick={() => setOpen(true)}>
-            {displayLabel}
-          </span>
-        </Dropdown>
+        <Tooltip overlay={displayValue} trigger="hover">
+          <Dropdown
+            overlay={editing ? formOverlay : menuOverlay}
+            trigger={["click"]}
+            visible={open}
+            overlayStyle={{ zIndex: 1010 }}
+            onVisibleChange={(visible) => [setOpen(visible), !visible && setEditing(required)]}
+          >
+            <span className="ant-ext-sb__filterTag--label" onClick={() => setOpen(true)}>
+              {displayLabel}
+            </span>
+          </Dropdown>
+        </Tooltip>
       </Tag>
     );
   }

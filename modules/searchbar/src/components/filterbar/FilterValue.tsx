@@ -30,14 +30,14 @@ export const FilterValue: React.FC<{
         return (
           <Input.Group>
             <InputNumber
-              value={value[0]}
-              max={value[1]}
-              onChange={(v) => onChange && onChange([v, value[1]])}
+              value={value ? value[0] : undefined}
+              max={value ? value[1] : undefined}
+              onChange={(v) => onChange && onChange([v, value ? value[1] : undefined])}
             />
             <InputNumber
-              value={value[1]}
-              min={value[0]}
-              onChange={(v) => onChange && onChange([value[0], v])}
+              value={value ? value[1] : undefined}
+              min={value ? value[0] : undefined}
+              onChange={(v) => onChange && onChange([value ? value[0] : undefined, v])}
             />
           </Input.Group>
         );

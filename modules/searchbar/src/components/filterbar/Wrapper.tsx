@@ -39,6 +39,7 @@ export const FilterbarWrapper: React.FC<IFilterProps> = React.memo(
         {sorted.map((filter, index) =>
           filter.isTimeField ? (
             <TimeFilterPicker
+              key={index}
               value={filter.value ? filter.value.toString() : "$now"}
               onChange={(v) => updateFilter(index, { value: v })}
             />

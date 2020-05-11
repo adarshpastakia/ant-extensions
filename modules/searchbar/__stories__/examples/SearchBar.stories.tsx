@@ -48,7 +48,7 @@ export const Example = () => {
               operator: EnumOperator.BETWEEN,
               isTimeField: true,
               required: true,
-              value: "$week|$now"
+              value: "$week|$week"
             }
           ]}
           fields={[

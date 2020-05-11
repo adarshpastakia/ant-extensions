@@ -19,6 +19,7 @@ export const AddButton: React.FC<{ disabled: boolean }> = React.memo(({ disabled
       trigger={["click"]}
       disabled={disabled}
       visible={open}
+      overlayStyle={{ zIndex: 1010 }}
       onVisibleChange={(visible) => setOpen(visible)}
     >
       <Tag className="ant-ext-sb__addFilter">{t("label.add")}</Tag>

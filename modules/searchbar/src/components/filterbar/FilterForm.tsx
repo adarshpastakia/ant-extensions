@@ -4,7 +4,7 @@
 // @license   : MIT
 
 import { Button, Card, Checkbox, Col, Form, Input, Row, Select, Switch } from "antd";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { I18nKey } from "../../utils/i18nKey";
 import { EnumOperator, IFilterField, IFilterObject, TypeOperators } from "../../utils/types";
@@ -32,7 +32,15 @@ export const FilterForm: React.FC<{
       setOperator(filter.operator);
       setField(fields.find((f) => f.key === filter.field));
     }
-  }, [filter, fields, form]);
+  }, []);
+
+  const operators = useMemo(() => {
+    if (fieldObject) {
+      console.log("======>", TypeOperators[fieldObject.type]);
+      return TypeOperators[fieldObject.type];
+    }
+    return [];
+  }, [fieldObject]);
 
   const fieldChanged = useCallback(
     (fieldKey) => {
@@ -113,18 +121,17 @@ export const FilterForm: React.FC<{
                 <Select.Option value={EnumOperator.EXISTS}>
                   {t(`operator.${EnumOperator.EXISTS}`)}
                 </Select.Option>
-                {fieldObject &&
-                  TypeOperators[fieldObject.type].map((op) => (
-                    <Select.Option value={op} key={op}>
-                      {t(`operator.${op}`)}
-                    </Select.Option>
-                  ))}
+                {operators.map((op) => (
+                  <Select.Option value={op} key={op}>
+                    {t(`operator.${op}`)}
+                  </Select.Option>
+                ))}
               </Select>
             </Form.Item>
           </Col>
         </Row>
 
-        {operator && operator !== EnumOperator.EXISTS && (
+        {operator && fieldObject && operator !== EnumOperator.EXISTS && (
           <Form.Item
             label={t("label.value")}
             name="value"
