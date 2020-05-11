@@ -13,7 +13,7 @@ import { I18nKey } from "./common/i18n";
 export const Example = () => {
   const { i18n } = useTranslation(I18nKey);
 
-  const eventsFromNames = actions("onQueryChange", "onSearch", "onCollapsed");
+  const eventsFromNames = actions("onQueryChange", "onFilterChanged", "onSearch", "onCollapsed");
 
   return (
     <ConfigProvider direction={i18n.dir()}>

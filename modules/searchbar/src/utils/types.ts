@@ -200,7 +200,7 @@ export interface IFilterProps {
    * On add filter
    * @param filter
    */
-  onFilterAdded?: (queryObject: IQueryObject) => void;
+  onFilterAdded?: (filter: IFilterObject) => void;
   /**
    * On update filter
    * @param filter
@@ -210,7 +210,7 @@ export interface IFilterProps {
    * On remove filter
    * @param filter
    */
-  onFilterRemoved?: (queryObject: IQueryObject) => void;
+  onFilterRemoved?: (filter: IFilterObject) => void;
 
   /**
    * On filters change, (add/update/delete)

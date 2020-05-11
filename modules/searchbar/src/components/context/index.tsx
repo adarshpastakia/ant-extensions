@@ -33,6 +33,10 @@ export const ContextProvider: React.FC<Partial<ISearchProps & IFilterProps>> = (
   filters: _filters = [],
   query: _query = "",
   onQueryChange,
+  onFilterAdded,
+  onFilterUpdate,
+  onFilterRemoved,
+  onFilterChanged,
   onSearch
 }) => {
   const [filters, setFilters] = useState<IFilterObject[]>([]);
@@ -62,7 +66,10 @@ export const ContextProvider: React.FC<Partial<ISearchProps & IFilterProps>> = (
   };
 
   const addFilter = (filter: IFilterObject) => {
+    const newFilters = [...filters, filter];
     setFilters([...filters, filter]);
+    onFilterAdded && onFilterAdded(filter);
+    onFilterChanged && onFilterChanged(newFilters);
   };
 
   const updateFilter = (index: number, filter: Partial<IFilterObject>) => {
@@ -73,24 +80,38 @@ export const ContextProvider: React.FC<Partial<ISearchProps & IFilterProps>> = (
       ...filter
     });
     setFilters(newFilters);
+    onFilterUpdate &&
+      onFilterUpdate({
+        ...oldFilter,
+        ...filter
+      });
+    onFilterChanged && onFilterChanged(newFilters);
   };
 
   const removeFilter = (index: number) => {
     const newFilters = [...filters];
-    newFilters.splice(index, 1);
+    const [filter] = newFilters.splice(index, 1);
     setFilters(newFilters);
+    onFilterRemoved && onFilterRemoved(filter);
+    onFilterChanged && onFilterChanged(newFilters);
   };
 
   const enableAll = (value: boolean) => {
-    setFilters(filters.map((f) => (f.required ? f : { ...f, active: value })));
+    const newFilters = filters.map((f) => (f.required ? f : { ...f, active: value }));
+    setFilters(newFilters);
+    onFilterChanged && onFilterChanged(newFilters);
   };
 
   const toggleExclude = () => {
-    setFilters(filters.map((f) => (f.required ? f : { ...f, negative: !f.negative })));
+    const newFilters = filters.map((f) => (f.required ? f : { ...f, negative: !f.negative }));
+    setFilters(newFilters);
+    onFilterChanged && onFilterChanged(newFilters);
   };
 
   const removeAll = () => {
-    setFilters(filters.filter((f) => f.required || f.isTimeField));
+    const newFilters = filters.filter((f) => f.required || f.isTimeField);
+    setFilters(newFilters);
+    onFilterChanged && onFilterChanged(newFilters);
   };
 
   return (
