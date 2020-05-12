@@ -10,7 +10,6 @@ import { I18nKey } from "../../utils/i18nKey";
 import { EnumFieldType, EnumOperator, ICompareObject, IFilterField } from "../../utils/types";
 import { Context } from "../context";
 import { FieldSelect } from "../FieldSelect";
-import { FilterValue } from "./FilterValue";
 
 export const CompareForm: React.FC<{
   filter?: ICompareObject;
@@ -22,13 +21,11 @@ export const CompareForm: React.FC<{
   const { fields, removeFilter, updateFilter, addFilter } = useContext(Context);
 
   const [fieldObject, setField] = useState<IFilterField | undefined>(undefined);
-  const [operator, setOperator] = useState<EnumOperator | undefined>(undefined);
   useEffect(() => {
     form.setFieldsValue({
       ...filter
     });
     if (filter) {
-      setOperator(filter.operator);
       setField(fields.find((f) => f.key === filter.field));
     }
   }, []);
@@ -61,7 +58,7 @@ export const CompareForm: React.FC<{
         setField(_fieldObject);
       }
     },
-    [fields, form]
+    [fields]
   );
 
   const doSave = useCallback(() => {
@@ -118,7 +115,7 @@ export const CompareForm: React.FC<{
                 }
               ]}
             >
-              <Select onSelect={(v) => setOperator(v as AnyObject)}>
+              <Select>
                 {operators.map((op) => (
                   <Select.Option value={op} key={op}>
                     {t(`operator.${op}`)}

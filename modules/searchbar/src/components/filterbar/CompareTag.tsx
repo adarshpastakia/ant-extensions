@@ -74,7 +74,7 @@ export const CompareTag: React.FC<{ filter: ICompareObject; index: number }> = R
           />
         </div>
       ),
-      [filter, index]
+      [filter, index, required]
     );
 
     return (

@@ -4,7 +4,6 @@
 // @license   : MIT
 
 import { TimeFilterPicker } from "@ant-extensions/super-date";
-import { Tag } from "antd";
 import React, { useContext, useEffect, useMemo } from "react";
 import { IFilterProps } from "../../utils/types";
 import { Context } from "../context";
