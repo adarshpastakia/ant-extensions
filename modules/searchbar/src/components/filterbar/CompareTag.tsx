@@ -9,50 +9,36 @@ import Icon, {
   EyeInvisibleOutlined,
   EyeOutlined
 } from "@ant-design/icons";
-import { DateUtils } from "@ant-extensions/super-date/src";
 import { Checkbox, Dropdown, Menu, Tag, Tooltip } from "antd";
 import React, { useContext, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { I18nKey } from "../../utils/i18nKey";
-import { EnumFieldType, IFilterObject } from "../../utils/types";
+import { ICompareObject } from "../../utils/types";
 import { Context } from "../context";
-import { FilterForm } from "./FilterForm";
+import { CompareForm } from "./CompareForm";
 import { TwoTone } from "./TwoTone";
 
-export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = React.memo(
+export const CompareTag: React.FC<{ filter: ICompareObject; index: number }> = React.memo(
   ({ index, filter }) => {
     const { t } = useTranslation(I18nKey);
 
-    const { field, operator, value, label, active, negative, required } = filter;
+    const { field, operator, compare, active, negative, required } = filter;
 
     const [open, setOpen] = useState(false);
     const [editing, setEditing] = useState(required);
     const { fields, updateFilter, removeFilter } = useContext(Context);
 
-    const displayValue = useMemo(() => {
-      const _field = fields.find((f) => f.key === field);
-      return _field && value ? (
-        <span className="ant-ext-sb__filterTag--clip">
-          {_field.type === EnumFieldType.DATE
-            ? DateUtils.label(value.toString())
-            : value
-            ? value.toString()
-            : ""}
-        </span>
-      ) : undefined;
-    }, [field, value, fields, t]);
-
     const displayLabel = useMemo(() => {
-      if (label) return label;
       const _field = fields.find((f) => f.key === field);
+      const _compare = fields.find((f) => f.key === compare);
       return (
         <>
           <span className="ant-ext-sb__filterTag--clip">{_field ? _field.name : field}</span>
           <b>&nbsp;{t(`operator.${operator}`)}&nbsp;</b>
-          {displayValue}
+          <span className="ant-ext-sb__filterTag--clip">{_compare ? _compare.name : compare}</span>
         </>
       );
-    }, [label, field, operator, displayValue, fields, t]);
+    }, [field, operator, compare, fields, t]);
 
     const menuOverlay = useMemo(
       () => (
@@ -81,20 +67,20 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
     const formOverlay = useMemo(
       () => (
         <div className="ant-ext-sb__dropdown" data-for-required={required}>
-          <FilterForm
+          <CompareForm
             filter={filter}
             index={index}
             onCancel={() => [setOpen(false), setEditing(required)]}
           />
         </div>
       ),
-      [filter, index, required]
+      [filter, index]
     );
 
     return (
       <Tag
         className="ant-ext-sb__filterTag"
-        color={negative ? "red" : "blue"}
+        color={negative ? "orange" : "geekblue"}
         data-active={active}
         data-negative={negative}
         closable={!required}
@@ -107,7 +93,7 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
             onChange={(e) => updateFilter(index, { active: e.target.checked })}
           />
         )}
-        <Tooltip overlay={displayValue} trigger="hover">
+        <Tooltip overlay={displayLabel} trigger="hover">
           <Dropdown
             overlay={editing ? formOverlay : menuOverlay}
             trigger={["click"]}
@@ -124,4 +110,4 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
     );
   }
 );
-FilterTag.displayName = "FilterTag";
+CompareTag.displayName = "CompareTag";

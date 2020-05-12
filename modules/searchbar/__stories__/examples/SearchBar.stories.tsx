@@ -3,11 +3,12 @@
 // @copyright : 2020
 // @license   : MIT
 
-import { EnumFieldType, EnumOperator, SearchBar } from "@ant-extensions/searchbar";
+import { EnumFieldType, SearchBar } from "@ant-extensions/searchbar";
 import { actions } from "@storybook/addon-actions";
-import { ConfigProvider, Menu, Select } from "antd";
+import { ConfigProvider, Menu, Select, Tag } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { EnumOperator } from "../../src";
 import { I18nKey } from "./common/i18n";
 
 export const Example = () => {
@@ -22,26 +23,29 @@ export const Example = () => {
           collapsed={false}
           filters={[
             {
+              type: "filter",
               active: true,
               field: "string",
               label: "My Label87",
               negative: true,
-              operator: EnumOperator.CONTAINS,
+              operator: EnumOperator.INCLUDES,
               isTimeField: false,
               required: false,
               value: "test"
             },
             {
+              type: "filter",
               active: true,
               field: "string",
               label: "My Label",
               negative: false,
-              operator: EnumOperator.CONTAINS,
+              operator: EnumOperator.INCLUDES,
               isTimeField: false,
               required: false,
               value: "test"
             },
             {
+              type: "filter",
               active: true,
               field: "date",
               negative: false,
@@ -49,6 +53,22 @@ export const Example = () => {
               isTimeField: true,
               required: true,
               value: "$week|$week"
+            },
+            {
+              type: "compare",
+              field: "string_sfjghdkfjgd_erituerot",
+              operator: EnumOperator.INCLUDES,
+              compare: "string2",
+              negative: false,
+              active: true
+            },
+            {
+              type: "compare",
+              field: "string",
+              operator: EnumOperator.INCLUDES,
+              compare: "string2",
+              negative: true,
+              active: true
             }
           ]}
           fields={[
@@ -85,6 +105,13 @@ export const Example = () => {
           }
           {...eventsFromNames}
         />
+        <hr />
+        <div>
+          <Tag color="blue">Active Filter</Tag>
+          <Tag color="red">Negative Filter</Tag>
+          <Tag color="geekblue">Active Comparator</Tag>
+          <Tag color="orange">Negative Comparator</Tag>
+        </div>
       </div>
     </ConfigProvider>
   );

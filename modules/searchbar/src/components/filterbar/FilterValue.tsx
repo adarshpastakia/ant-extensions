@@ -5,8 +5,14 @@
 
 import { RelativeDatePicker, RelativeRangePicker } from "@ant-extensions/super-date";
 import { Input, InputNumber, Select, Switch } from "antd";
-import React, { useMemo } from "react";
-import { EnumFieldType, EnumOperator, IFilterField, OperatorValueType } from "../../utils/types";
+import React, { useCallback, useMemo, useState } from "react";
+import {
+  EnumFieldType,
+  EnumOperator,
+  FieldValue,
+  IFilterField,
+  OperatorValueType
+} from "../../utils/types";
 
 export const FilterValue: React.FC<{
   field?: IFilterField;
@@ -18,6 +24,24 @@ export const FilterValue: React.FC<{
   const valueType = useMemo(
     () => operator && operator !== EnumOperator.EXISTS && OperatorValueType[operator],
     [operator]
+  );
+
+  const [values, setValues] = useState<FieldValue[]>(field && field.values ? field.values : []);
+  const [searching, setSearching] = useState(false);
+  const doSearch = useCallback(
+    (search) => {
+      if (field && field.onSearch) {
+        setSearching(true);
+        field
+          .onSearch(search)
+          .then((data) => {
+            setValues(data);
+            setSearching(false);
+          })
+          .catch(() => setSearching(false));
+      }
+    },
+    [field]
   );
 
   if (type === EnumFieldType.BOOLEAN) {
@@ -46,7 +70,7 @@ export const FilterValue: React.FC<{
       }
     }
     if (type === EnumFieldType.STRING) {
-      if (valueType === "single" && !field.values) {
+      if (valueType === "single" && !field.values && !field.onSearch) {
         return <Input value={value} onChange={onChange} />;
       }
       return (
@@ -54,9 +78,17 @@ export const FilterValue: React.FC<{
           showSearch
           value={value}
           onChange={onChange}
+          onSearch={doSearch}
+          loading={searching}
           tokenSeparators={[","]}
           mode={valueType === "multiple" ? "tags" : undefined}
-        />
+        >
+          {values.map((ob, index) => (
+            <Select.Option key={index} value={typeof ob === "string" ? ob : ob.value}>
+              {typeof ob === "string" ? ob : ob.label}
+            </Select.Option>
+          ))}
+        </Select>
       );
     }
     if (type === EnumFieldType.DATE) {

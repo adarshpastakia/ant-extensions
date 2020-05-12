@@ -4,10 +4,13 @@
 // @license   : MIT
 
 import { TimeFilterPicker } from "@ant-extensions/super-date";
+import { Tag } from "antd";
 import React, { useContext, useEffect, useMemo } from "react";
 import { IFilterProps } from "../../utils/types";
 import { Context } from "../context";
 import { AddButton } from "./AddButton";
+import { AddCompare } from "./AddCompare";
+import { CompareTag } from "./CompareTag";
 import { FilterTag } from "./FilterTag";
 import { GlobalMenu } from "./GlobalMenu";
 
@@ -24,8 +27,8 @@ export const FilterbarWrapper: React.FC<IFilterProps> = React.memo(
     const sorted = useMemo(
       () =>
         filters.sort((a, b) => {
-          if (a.isTimeField) return -1;
-          if (b.isTimeField) return 1;
+          if (a.type === "filter" && a.isTimeField) return -1;
+          if (b.type === "filter" && b.isTimeField) return 1;
           if (a.required) return -1;
           if (b.required) return 1;
           return 0;
@@ -37,17 +40,22 @@ export const FilterbarWrapper: React.FC<IFilterProps> = React.memo(
       <div className="ant-ext-sb__filterBar">
         <GlobalMenu disabled={disabled} />
         {sorted.map((filter, index) =>
-          filter.isTimeField ? (
-            <TimeFilterPicker
-              key={index}
-              value={filter.value ? filter.value.toString() : "$now"}
-              onChange={(v) => updateFilter(index, { value: v })}
-            />
+          filter.type === "filter" ? (
+            filter.isTimeField ? (
+              <TimeFilterPicker
+                key={index}
+                value={filter.value ? filter.value.toString() : "$now"}
+                onChange={(v) => updateFilter(index, { value: v })}
+              />
+            ) : (
+              <FilterTag key={index} index={index} filter={filter} />
+            )
           ) : (
-            <FilterTag key={index} index={index} filter={filter} />
+            <CompareTag key={index} index={index} filter={filter} />
           )
         )}
         <AddButton disabled={disabled} />
+        <AddCompare disabled={disabled} />
       </div>
     );
   }

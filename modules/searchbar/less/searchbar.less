@@ -38,6 +38,11 @@
     grid-gap: 4px;
     place-content: start;
     align-items: center;
+
+    .ant-tag {
+      margin: 0;
+      margin-inline-end: 4px;
+    }
   }
 
   &__inputGroup {
@@ -111,8 +116,6 @@
     grid-template-areas: "check label remove";
     grid-template-columns: auto 1fr auto;
     padding: 0 3px;
-    margin: 0;
-    margin-inline-end: 4px;
 
     &[data-negative="true"] {
       .ant-checkbox-checked .ant-checkbox-inner {
@@ -133,14 +136,20 @@
 
     &--label {
       grid-area: label;
-      max-width: 180px;
+      display: flex;
+    }
+
+    &--label &--clip {
+      max-width: 80px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      display: inline-block;
     }
 
-    .anticon-close {
+    .anticon.anticon-close {
       color: inherit;
+      margin: 0;
       align-self: center;
       grid-area: remove;
     }
@@ -155,6 +164,7 @@
         &:after {
           width: 4.714286px;
           height: 7.142857px;
+          left: 2px;
         }
       }
     }
@@ -162,7 +172,11 @@
 
   &__filterForm {
     width: 480px;
-    max-width: 480px;
+    max-width: 270px;
+
+    &.forCompare {
+      width: 270px;
+    }
 
     .ant-card-body {
       padding: 8px 12px;

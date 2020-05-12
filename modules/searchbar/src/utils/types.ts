@@ -20,7 +20,7 @@ export enum EnumOperator {
   GT = "GT",
   LTE = "LTE",
   GTE = "GTE",
-  CONTAINS = "CONTAINS",
+  INCLUDES = "INCLUDES",
   STARTS = "STARTS",
   ENDS = "ENDS",
   WITHIN = "WITHIN",
@@ -34,7 +34,7 @@ export const TypeOperators: { [key in EnumFieldType]: EnumOperator[] } = {
   [EnumFieldType.STRING]: [
     EnumOperator.IS,
     EnumOperator.IN,
-    EnumOperator.CONTAINS,
+    EnumOperator.INCLUDES,
     EnumOperator.STARTS,
     EnumOperator.ENDS
   ],
@@ -76,7 +76,7 @@ export const OperatorValueType: { [key in EnumOperator]: "single" | "double" | "
   [EnumOperator.WITHIN]: "single",
   [EnumOperator.STARTS]: "single",
   [EnumOperator.ENDS]: "single",
-  [EnumOperator.CONTAINS]: "single",
+  [EnumOperator.INCLUDES]: "single",
   [EnumOperator.LT]: "single",
   [EnumOperator.GT]: "single",
   [EnumOperator.LTE]: "single",
@@ -106,10 +106,11 @@ export interface IFilterField {
   type: EnumFieldType;
   values?: FieldValue[];
   defaultOperator?: EnumOperator;
-  onSearch?: (q: string) => FieldValue[];
+  onSearch?: (q: string) => Promise<FieldValue[]>;
 }
 
 export interface IFilterObject {
+  type: "filter";
   field: string;
   operator: EnumOperator;
   value: FilterValue;
@@ -120,9 +121,21 @@ export interface IFilterObject {
   required?: boolean;
 }
 
+export interface ICompareObject {
+  type: "compare";
+  field: string;
+  operator: EnumOperator;
+  compare: string;
+  active?: boolean;
+  negative?: boolean;
+  required?: boolean;
+}
+
+export type FilterObject = IFilterObject | ICompareObject;
+
 export interface IQueryObject {
   query?: string;
-  filters: IFilterObject[];
+  filters: FilterObject[];
 }
 
 export interface ISearchProps {
@@ -183,7 +196,7 @@ export interface IFilterProps {
    * Filters list
    * @default []
    */
-  filters?: IFilterObject[];
+  filters?: FilterObject[];
 
   /**
    * Field list
@@ -200,21 +213,21 @@ export interface IFilterProps {
    * On add filter
    * @param filter
    */
-  onFilterAdded?: (filter: IFilterObject) => void;
+  onFilterAdded?: (filter: FilterObject) => void;
   /**
    * On update filter
    * @param filter
    */
-  onFilterUpdate?: (filter: IFilterObject) => void;
+  onFilterUpdate?: (filter: FilterObject) => void;
   /**
    * On remove filter
    * @param filter
    */
-  onFilterRemoved?: (filter: IFilterObject) => void;
+  onFilterRemoved?: (filter: FilterObject) => void;
 
   /**
    * On filters change, (add/update/delete)
    * @param filters
    */
-  onFilterChanged?: (filters: IFilterObject[]) => void;
+  onFilterChanged?: (filters: FilterObject[]) => void;
 }

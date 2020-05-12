@@ -6,19 +6,19 @@
 import i18next from "i18next";
 import React, { useCallback, useEffect, useState } from "react";
 import { I18nextProvider } from "react-i18next";
-import { IFilterField, IFilterObject, IFilterProps, ISearchProps } from "../../utils/types";
+import { IFilterField, FilterObject, IFilterProps, ISearchProps } from "../../utils/types";
 
 interface IContext {
   fields: IFilterField[];
-  filters: IFilterObject[];
+  filters: FilterObject[];
   query: string;
 
   doSearch: () => void;
   updateQuery: (query: string) => void;
 
-  updateFilter: (index: number, filter: Partial<IFilterObject>) => void;
+  updateFilter: (index: number, filter: Partial<FilterObject>) => void;
   removeFilter: (index: number) => void;
-  addFilter: (filter: IFilterObject) => void;
+  addFilter: (filter: FilterObject) => void;
 
   enableAll: (value: boolean) => void;
   toggleExclude: () => void;
@@ -39,7 +39,7 @@ export const ContextProvider: React.FC<Partial<ISearchProps & IFilterProps>> = (
   onFilterChanged,
   onSearch
 }) => {
-  const [filters, setFilters] = useState<IFilterObject[]>([]);
+  const [filters, setFilters] = useState<FilterObject[]>([]);
   const [query, setQuery] = useState<string>("");
 
   useEffect(() => {
@@ -65,26 +65,26 @@ export const ContextProvider: React.FC<Partial<ISearchProps & IFilterProps>> = (
       });
   };
 
-  const addFilter = (filter: IFilterObject) => {
+  const addFilter = (filter: FilterObject) => {
     const newFilters = [...filters, filter];
     setFilters([...filters, filter]);
     onFilterAdded && onFilterAdded(filter);
     onFilterChanged && onFilterChanged(newFilters);
   };
 
-  const updateFilter = (index: number, filter: Partial<IFilterObject>) => {
+  const updateFilter = (index: number, filter: Partial<FilterObject>) => {
     const newFilters = [...filters];
     const oldFilter = filters[index];
     newFilters.splice(index, 1, {
       ...oldFilter,
       ...filter
-    });
+    } as AnyObject);
     setFilters(newFilters);
     onFilterUpdate &&
       onFilterUpdate({
         ...oldFilter,
         ...filter
-      });
+      } as AnyObject);
     onFilterChanged && onFilterChanged(newFilters);
   };
 
@@ -109,7 +109,7 @@ export const ContextProvider: React.FC<Partial<ISearchProps & IFilterProps>> = (
   };
 
   const removeAll = () => {
-    const newFilters = filters.filter((f) => f.required || f.isTimeField);
+    const newFilters = filters.filter((f) => f.required);
     setFilters(newFilters);
     onFilterChanged && onFilterChanged(newFilters);
   };
