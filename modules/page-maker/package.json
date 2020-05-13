@@ -1,0 +1,49 @@
+{
+  "name": "@ant-extensions/page-maker",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Ant React Extended - Page builder for building dashboards",
+  "keywords": [
+    "antd.4",
+    "searchbar",
+    "filterbar",
+    "kibana searchbar"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "modules/page-maker",
+    "url": "https://github.com/adarshpastakia/ant-extensions"
+  },
+  "author": "Adarsh Pastakia <adarshpastakia@outlook.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "__tests__",
+    "lib": "src"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.0.6",
+    "antd": "^4.1.4",
+    "grapesjs": "^0.16.12",
+    "grapesjs-react": "^3.0.4",
+    "i18next": "^19.4.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-i18next": "^11.3.5"
+  },
+  "devDependencies": {
+    "@storybook/addon-knobs": "^5.3.18",
+    "@types/storybook__addon-knobs": "^5.2.1"
+  },
+  "scripts": {
+    "build:lib": "tsc -p ./tsconfig.build.json",
+    "build:style": "lessc --js --npm-import=\"prefix=~\" less/page-maker.less dist/page-maker.css",
+    "build": "npm-run-all build:lib build:style",
+    "predist": "rm -rf ./dist",
+    "dist": "yarn build",
+    "start": "tsc -p ./tsconfig.build.json -w",
+    "version": "echo Make changelog"
+  }
+}
