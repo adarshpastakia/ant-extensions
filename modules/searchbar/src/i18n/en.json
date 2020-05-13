@@ -9,7 +9,8 @@
     "label": "Label",
     "add": "Add Filter",
     "compare": "Compare With",
-    "addCompare": "Comparator",
+    "switchValue": "Static Value",
+    "switchCompare": "Compare Field",
     "edit": "Edit",
     "invert": "Invert Include/Exclude",
     "remove_all": "Remove All",
@@ -28,6 +29,7 @@
     "field": "Field required",
     "operator": "Operator required",
     "value": "Value required",
+    "compare": "Compare field required",
     "label": "Label required"
   },
   "operator": {

@@ -110,32 +110,21 @@ export interface IFilterField {
 }
 
 export interface IFilterObject {
-  type: "filter";
+  type: "filter" | "compare";
   field: string;
   operator: EnumOperator;
-  value: FilterValue;
+  value?: FilterValue;
   label?: string;
+  compare?: string;
   active?: boolean;
   isTimeField?: boolean;
   negative?: boolean;
   required?: boolean;
 }
 
-export interface ICompareObject {
-  type: "compare";
-  field: string;
-  operator: EnumOperator;
-  compare: string;
-  active?: boolean;
-  negative?: boolean;
-  required?: boolean;
-}
-
-export type FilterObject = IFilterObject | ICompareObject;
-
 export interface IQueryObject {
   query?: string;
-  filters: FilterObject[];
+  filters: IFilterObject[];
 }
 
 export interface ISearchProps {
@@ -196,7 +185,7 @@ export interface IFilterProps {
    * Filters list
    * @default []
    */
-  filters?: FilterObject[];
+  filters?: IFilterObject[];
 
   /**
    * Field list
@@ -213,21 +202,21 @@ export interface IFilterProps {
    * On add filter
    * @param filter
    */
-  onFilterAdded?: (filter: FilterObject) => void;
+  onFilterAdded?: (filter: IFilterObject) => void;
   /**
    * On update filter
    * @param filter
    */
-  onFilterUpdate?: (filter: FilterObject) => void;
+  onFilterUpdate?: (filter: IFilterObject) => void;
   /**
    * On remove filter
    * @param filter
    */
-  onFilterRemoved?: (filter: FilterObject) => void;
+  onFilterRemoved?: (filter: IFilterObject) => void;
 
   /**
    * On filters change, (add/update/delete)
    * @param filters
    */
-  onFilterChanged?: (filters: FilterObject[]) => void;
+  onFilterChanged?: (filters: IFilterObject[]) => void;
 }

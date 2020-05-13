@@ -6,19 +6,19 @@
 import i18next from "i18next";
 import React, { useCallback, useEffect, useState } from "react";
 import { I18nextProvider } from "react-i18next";
-import { IFilterField, FilterObject, IFilterProps, ISearchProps } from "../../utils/types";
+import { IFilterField, IFilterObject, IFilterProps, ISearchProps } from "../../utils/types";
 
 interface IContext {
   fields: IFilterField[];
-  filters: FilterObject[];
+  filters: IFilterObject[];
   query: string;
 
   doSearch: () => void;
   updateQuery: (query: string) => void;
 
-  updateFilter: (index: number, filter: Partial<FilterObject>) => void;
+  updateFilter: (index: number, filter: Partial<IFilterObject>) => void;
   removeFilter: (index: number) => void;
-  addFilter: (filter: FilterObject) => void;
+  addFilter: (filter: IFilterObject) => void;
 
   enableAll: (value: boolean) => void;
   toggleExclude: () => void;
@@ -39,7 +39,7 @@ export const ContextProvider: React.FC<Partial<ISearchProps & IFilterProps>> = (
   onFilterChanged,
   onSearch
 }) => {
-  const [filters, setFilters] = useState<FilterObject[]>([]);
+  const [filters, setFilters] = useState<IFilterObject[]>([]);
   const [query, setQuery] = useState<string>("");
 
   useEffect(() => {
@@ -65,14 +65,14 @@ export const ContextProvider: React.FC<Partial<ISearchProps & IFilterProps>> = (
       });
   };
 
-  const addFilter = (filter: FilterObject) => {
+  const addFilter = (filter: IFilterObject) => {
     const newFilters = [...filters, filter];
     setFilters([...filters, filter]);
     onFilterAdded && onFilterAdded(filter);
     onFilterChanged && onFilterChanged(newFilters);
   };
 
-  const updateFilter = (index: number, filter: Partial<FilterObject>) => {
+  const updateFilter = (index: number, filter: Partial<IFilterObject>) => {
     const newFilters = [...filters];
     const oldFilter = filters[index];
     newFilters.splice(index, 1, {

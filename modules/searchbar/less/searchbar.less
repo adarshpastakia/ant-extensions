@@ -172,10 +172,11 @@
 
   &__filterForm {
     width: 480px;
-    max-width: 270px;
+    max-width: 480px;
 
     &.forCompare {
       width: 270px;
+      max-width: 270px;
     }
 
     .ant-card-body {
@@ -186,7 +187,12 @@
       padding: 0;
 
       > label {
+        display: flex;
         font-size: 12px;
+
+        > .ant-row {
+          flex: 1;
+        }
       }
     }
   }

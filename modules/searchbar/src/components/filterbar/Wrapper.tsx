@@ -8,8 +8,6 @@ import React, { useContext, useEffect, useMemo } from "react";
 import { IFilterProps } from "../../utils/types";
 import { Context } from "../context";
 import { AddButton } from "./AddButton";
-import { AddCompare } from "./AddCompare";
-import { CompareTag } from "./CompareTag";
 import { FilterTag } from "./FilterTag";
 import { GlobalMenu } from "./GlobalMenu";
 
@@ -39,22 +37,17 @@ export const FilterbarWrapper: React.FC<IFilterProps> = React.memo(
       <div className="ant-ext-sb__filterBar">
         <GlobalMenu disabled={disabled} />
         {sorted.map((filter, index) =>
-          filter.type === "filter" ? (
-            filter.isTimeField ? (
-              <TimeFilterPicker
-                key={index}
-                value={filter.value ? filter.value.toString() : "$now"}
-                onChange={(v) => updateFilter(index, { value: v })}
-              />
-            ) : (
-              <FilterTag key={index} index={index} filter={filter} />
-            )
+          filter.isTimeField ? (
+            <TimeFilterPicker
+              key={index}
+              value={filter.value ? filter.value.toString() : "$now"}
+              onChange={(v) => updateFilter(index, { value: v })}
+            />
           ) : (
-            <CompareTag key={index} index={index} filter={filter} />
+            <FilterTag key={index} index={index} filter={filter} />
           )
         )}
         <AddButton disabled={disabled} />
-        <AddCompare disabled={disabled} />
       </div>
     );
   }

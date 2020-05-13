@@ -23,12 +23,14 @@ export const FilterForm: React.FC<{
 
   const [fieldObject, setField] = useState<IFilterField | undefined>(undefined);
   const [operator, setOperator] = useState<EnumOperator | undefined>(undefined);
+  const [type, setType] = useState("");
   const [hasLabel, toggleHasLabel] = useState(!!filter.label);
   useEffect(() => {
     form.setFieldsValue({
       ...filter
     });
     if (filter) {
+      setType(filter.type || "filter");
       setOperator(filter.operator);
       setField(fields.find((f) => f.key === filter.field));
     }
@@ -132,20 +134,64 @@ export const FilterForm: React.FC<{
           </Col>
         </Row>
 
-        {operator && fieldObject && operator !== EnumOperator.EXISTS && (
-          <Form.Item
-            label={t("label.value")}
-            name="value"
-            rules={[
-              {
-                required: true,
-                message: t("validate.value")
+        {operator &&
+          fieldObject &&
+          operator !== EnumOperator.EXISTS &&
+          (type === "filter" ? (
+            <Form.Item
+              label={
+                <Row align="middle">
+                  <Col flex="auto">{t("label.value")}</Col>
+                  <Col>
+                    <Button
+                      type="link"
+                      size="small"
+                      onClick={() => [form.setFieldsValue({ type: "compare" }), setType("compare")]}
+                    >
+                      {t("label.switchCompare")}
+                    </Button>
+                  </Col>
+                </Row>
               }
-            ]}
-          >
-            <FilterValue field={fieldObject} operator={operator} />
-          </Form.Item>
-        )}
+              name="value"
+              rules={[
+                {
+                  required: true,
+                  message: t("validate.value")
+                }
+              ]}
+            >
+              <FilterValue field={fieldObject} operator={operator} />
+            </Form.Item>
+          ) : (
+            <Form.Item
+              label={
+                <Row align="middle">
+                  <Col flex="auto">{t("label.compare")}</Col>
+                  <Col>
+                    <Button
+                      type="link"
+                      size="small"
+                      onClick={() => [form.setFieldsValue({ type: "filter" }), setType("filter")]}
+                    >
+                      {t("label.switchValue")}
+                    </Button>
+                  </Col>
+                </Row>
+              }
+              name="compare"
+              rules={[
+                {
+                  required: true,
+                  message: t("validate.compare")
+                }
+              ]}
+            >
+              <FieldSelect
+                fields={fields.filter((f) => !fieldObject || f.key !== fieldObject.key)}
+              />
+            </Form.Item>
+          ))}
 
         <Form.Item
           name="label"

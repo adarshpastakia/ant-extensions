@@ -56,18 +56,10 @@ export const Example = () => {
             },
             {
               type: "compare",
-              field: "string_sfjghdkfjgd_erituerot",
-              operator: EnumOperator.INCLUDES,
-              compare: "string2",
-              negative: false,
-              active: true
-            },
-            {
-              type: "compare",
               field: "string",
               operator: EnumOperator.INCLUDES,
               compare: "string2",
-              negative: true,
+              negative: false,
               active: true
             }
           ]}

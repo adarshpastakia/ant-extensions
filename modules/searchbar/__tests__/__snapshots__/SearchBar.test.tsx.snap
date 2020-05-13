@@ -116,11 +116,6 @@ exports[`RelativeDatePicker should render 1`] = `
       >
         Add Filter
       </span>
-      <span
-        class="ant-tag ant-ext-sb__addFilter ant-dropdown-trigger"
-      >
-        Comparator
-      </span>
     </div>
   </div>
 </div>

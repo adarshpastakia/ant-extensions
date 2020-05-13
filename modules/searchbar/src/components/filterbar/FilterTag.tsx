@@ -23,7 +23,7 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
   ({ index, filter }) => {
     const { t } = useTranslation(I18nKey);
 
-    const { field, operator, value, label, active, negative, required } = filter;
+    const { field, operator, type, value, label, compare, active, negative, required } = filter;
 
     const [open, setOpen] = useState(false);
     const [editing, setEditing] = useState(required);
@@ -31,19 +31,21 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
 
     const displayValue = useMemo(() => {
       const _field = fields.find((f) => f.key === field);
-      return _field && value ? (
+      const _compare = fields.find((f) => f.key === compare);
+      let _value = value ? `"${value.toString()}"` : "";
+      if (type === "compare") {
+        _value = _compare ? _compare.name : compare || "";
+      }
+      return _value ? (
         <span className="ant-ext-sb__filterTag--clip">
-          {_field.type === EnumFieldType.DATE
+          {_field && value && _field.type === EnumFieldType.DATE
             ? DateUtils.label(value.toString())
-            : value
-            ? value.toString()
-            : ""}
+            : _value}
         </span>
       ) : undefined;
     }, [field, value, fields, t]);
 
     const displayLabel = useMemo(() => {
-      if (label) return label;
       const _field = fields.find((f) => f.key === field);
       return (
         <>
@@ -52,7 +54,7 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
           {displayValue}
         </>
       );
-    }, [label, field, operator, displayValue, fields, t]);
+    }, [field, operator, displayValue, fields, t]);
 
     const menuOverlay = useMemo(
       () => (
@@ -91,10 +93,16 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
       [filter, index, required]
     );
 
+    const color = useMemo(
+      () =>
+        negative ? (type === "filter" ? "red" : "orange") : type === "filter" ? "blue" : "geekblue",
+      [negative, type]
+    );
+
     return (
       <Tag
         className="ant-ext-sb__filterTag"
-        color={negative ? "red" : "blue"}
+        color={color}
         data-active={active}
         data-negative={negative}
         closable={!required}
@@ -107,7 +115,7 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
             onChange={(e) => updateFilter(index, { active: e.target.checked })}
           />
         )}
-        <Tooltip overlay={displayValue} trigger="hover">
+        <Tooltip overlay={displayLabel} trigger="hover">
           <Dropdown
             overlay={editing ? formOverlay : menuOverlay}
             trigger={["click"]}
@@ -116,7 +124,7 @@ export const FilterTag: React.FC<{ filter: IFilterObject; index: number }> = Rea
             onVisibleChange={(visible) => [setOpen(visible), !visible && setEditing(required)]}
           >
             <span className="ant-ext-sb__filterTag--label" onClick={() => setOpen(true)}>
-              {displayLabel}
+              {label ? label : displayLabel}
             </span>
           </Dropdown>
         </Tooltip>
