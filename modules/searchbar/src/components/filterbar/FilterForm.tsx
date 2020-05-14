@@ -38,7 +38,6 @@ export const FilterForm: React.FC<{
 
   const operators = useMemo(() => {
     if (fieldObject) {
-      console.log("======>", TypeOperators[fieldObject.type]);
       return TypeOperators[fieldObject.type];
     }
     return [];
