@@ -3,12 +3,11 @@
 // @copyright : 2020
 // @license   : MIT
 
-import { EnumFieldType, SearchBar } from "@ant-extensions/searchbar";
+import { EnumFieldType, EnumOperator, SearchBar } from "@ant-extensions/searchbar";
 import { actions } from "@storybook/addon-actions";
 import { ConfigProvider, Menu, Select, Tag } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { EnumOperator } from "../../src";
 import { I18nKey } from "./common/i18n";
 
 export const Example = () => {
