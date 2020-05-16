@@ -6,7 +6,7 @@
 import { SearchBar } from "../src";
 
 export default {
-  title: "Search Bar",
+  title: "Search Bar/Example",
   component: SearchBar,
   parameters: {
     jest: ["SearchBar.test.tsx"]}

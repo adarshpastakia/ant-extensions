@@ -1,6 +1,6 @@
 // @author    : Adarsh Pastakia
 // @version   : 0.0.1
-// @copyright : $date.year
+// @copyright : 2020
 // @license   : MIT
 
 import { Button, Card, Checkbox, Col, Form, Input, Row, Select, Switch } from "antd";
