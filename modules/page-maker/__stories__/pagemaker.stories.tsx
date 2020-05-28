@@ -9,7 +9,7 @@ export default {
   title: "Page Maker/Example",
   component: PageMaker,
   parameters: {
-    // jest: ["SearchBar.test.tsx"]
+    jest: ["PageMaker.test.tsx"]
   }
 };
 

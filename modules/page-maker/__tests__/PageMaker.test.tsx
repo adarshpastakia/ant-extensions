@@ -4,7 +4,8 @@
 // @license   : MIT
 
 import { PieChartOutlined } from "@ant-design/icons";
-import { render, RenderResult } from "@testing-library/react";
+import { RelativeRangePicker } from "@ant-extensions/super-date/src";
+import { fireEvent, render, RenderResult } from "@testing-library/react";
 import React from "react";
 import { TestWrapper } from "../../../jest/TestWrapper";
 import { EnumTypes, PageConfig, PageMaker, WidgetObject } from "../src";
@@ -40,7 +41,7 @@ describe("PageMaker", () => {
         {
           id: "col-2",
           type: EnumTypes.COL,
-          colSpan: 6,
+          colSpan: 3,
           children: [
             {
               id: "tile-2",
@@ -60,6 +61,30 @@ describe("PageMaker", () => {
           id: "col-3",
           type: EnumTypes.COL,
           colSpan: 6,
+          children: [
+            {
+              id: "head-2",
+              type: EnumTypes.HEADING,
+              title: "Heading",
+              color: "#487eb0",
+              size: 18
+            },
+            {
+              id: "div-2",
+              type: EnumTypes.DIVIDER
+            },
+            {
+              id: "row-2",
+              type: EnumTypes.ROW,
+              height: 400,
+              children: []
+            }
+          ]
+        },
+        {
+          id: "col-4",
+          type: EnumTypes.COL,
+          colSpan: 3,
           children: []
         }
       ]
@@ -81,6 +106,39 @@ describe("PageMaker", () => {
 
   it("should render", (done) => {
     expect(fragment.container).toMatchSnapshot();
+    done();
+  });
+
+  it("should be editable", (done) => {
+    fragment.rerender(
+      <PageMaker config={config} widgets={widgets} renderWidget={(widgetId) => <div />} isEditing />
+    );
+    expect(fragment.container).toMatchSnapshot();
+
+    const headEl = fragment.container.querySelector(`[data-type="${EnumTypes.HEADING}"]`);
+    if (headEl) {
+      fireEvent.click(headEl);
+    }
+
+    const divEl = fragment.container.querySelector(`[data-type="${EnumTypes.DIVIDER}"]`);
+    if (divEl) {
+      fireEvent.click(divEl);
+    }
+
+    const rowEl = fragment.container.querySelector(`[data-type="${EnumTypes.ROW}"]`);
+    if (rowEl) {
+      fireEvent.click(rowEl);
+    }
+
+    const colEl = fragment.container.querySelector(`[data-type="${EnumTypes.COL}"]`);
+    if (colEl) {
+      fireEvent.click(colEl);
+    }
+
+    const tileEl = fragment.container.querySelector(`[data-type="${EnumTypes.TILE}"]`);
+    if (tileEl) {
+      fireEvent.click(tileEl);
+    }
     done();
   });
 

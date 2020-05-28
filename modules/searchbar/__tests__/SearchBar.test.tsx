@@ -6,7 +6,7 @@
 import { render, RenderResult } from "@testing-library/react";
 import React from "react";
 import { TestWrapper } from "../../../jest/TestWrapper";
-import { EnumFieldType, EnumOperator, SearchBar } from "../src";
+import { EnumFieldType, EnumOperator, IFilterObject, SearchBar } from "../src";
 
 describe("RelativeDatePicker", () => {
   let fragment: RenderResult;
@@ -18,9 +18,51 @@ describe("RelativeDatePicker", () => {
       name: "String"
     }
   ];
+  const filters: IFilterObject[] = [
+    {
+      type: "filter",
+      active: true,
+      field: "string",
+      label: "My Label87",
+      negative: true,
+      operator: EnumOperator.INCLUDES,
+      isTimeField: false,
+      required: false,
+      value: "test"
+    },
+    {
+      type: "filter",
+      active: true,
+      field: "string",
+      label: "My Label",
+      negative: false,
+      operator: EnumOperator.INCLUDES,
+      isTimeField: false,
+      required: false,
+      value: "test"
+    },
+    {
+      type: "filter",
+      active: true,
+      field: "date",
+      negative: false,
+      operator: EnumOperator.BETWEEN,
+      isTimeField: true,
+      required: true,
+      value: "$week|$week"
+    },
+    {
+      type: "compare",
+      field: "string",
+      operator: EnumOperator.INCLUDES,
+      compare: "string2",
+      negative: false,
+      active: true
+    }
+  ];
 
   beforeEach(() => {
-    fragment = render(<SearchBar collapsed={false} filters={[]} fields={fields} />, {
+    fragment = render(<SearchBar collapsed={false} filters={filters} fields={fields} />, {
       wrapper: TestWrapper
     });
   });
