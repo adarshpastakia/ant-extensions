@@ -1,9 +1,425 @@
 // @author    : Adarsh Pastakia
 // @version   : 0.0.1
-// @copyright : $date.year
+// @copyright : 2020
 // @license   : MIT
 
 @import "~antd/lib/style/themes/index";
 
 .ant-ext-pm {
+  &__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: grid;
+    grid-template-areas: "page aside" "foot foot";
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
+    transform: translate3d(0, 0, 0);
+  }
+
+  &__page {
+    grid-area: page;
+    padding: 8px;
+    overflow: auto;
+  }
+
+  &__grid {
+    display: grid;
+    grid-gap: 8px;
+    min-height: 100%;
+    align-content: start;
+    grid-auto-flow: row;
+  }
+
+  &__resizer {
+    display: none;
+    position: absolute;
+
+    &:before {
+      content: "";
+      display: block;
+      background-color: @border-color-base;
+    }
+
+    &:hover {
+      background-color: @border-color-base;
+      &:before {
+        background-color: @primary-5;
+      }
+    }
+  }
+
+  &__tileHead {
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: auto 1fr auto;
+
+    label {
+      padding: 0 3px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    button {
+      padding: 2px;
+      border: none;
+      line-height: 1;
+      background: none;
+      cursor: pointer;
+      outline: none;
+
+      &:hover {
+        color: @primary-5;
+        background-color: @background-color-base;
+      }
+    }
+  }
+
+  &__tileBody {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px @background-color-base;
+  }
+
+  &__tileExpander {
+    display: none;
+  }
+
+  &__head {
+    display: grid;
+    align-items: center;
+    user-select: none;
+    z-index: 99;
+    grid-template-columns: 1fr auto;
+    top: -25px;
+    left: 0;
+    right: 0;
+    height: 24px;
+    position: absolute;
+    background-color: @background-color-base;
+    box-shadow: 0 0 0 1px @border-color-base;
+
+    small {
+      padding: 0 3px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    button {
+      padding: 2px;
+      font-size: 11px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      margin-inline-start: 3px;
+
+      &:first-child {
+        cursor: move;
+      }
+
+      &:hover {
+        color: @primary-5;
+      }
+
+      &:last-child:hover {
+        color: @red-5;
+      }
+    }
+  }
+
+  @base: .ant-ext-pm;
+
+  &__item {
+    box-sizing: content-box;
+    position: relative;
+
+    &:hover @{base}__tileExpander {
+      display: inline-block;
+    }
+
+    &[data-expanded="true"] {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      z-index: 999;
+      background-color: @component-background;
+      box-shadow: 0 0 10px 1px @border-color-base;
+
+      @{base}__tileExpander {
+        display: inline-block;
+      }
+    }
+
+    &[data-type="row"] {
+      position: relative;
+      min-height: 32px;
+      display: grid;
+
+      @{base}__rowContainer {
+        display: grid;
+        grid-gap: 8px;
+        grid-auto-flow: column;
+        grid-template-columns: repeat(12, 1fr);
+      }
+
+      > @{base}__resizer {
+        height: 5px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        cursor: row-resize;
+
+        &:before {
+          width: 24px;
+          height: 5px;
+          left: 50%;
+          position: relative;
+          transform: translateX(-50%);
+        }
+      }
+    }
+
+    &[data-type="col"] {
+      display: grid;
+      grid-gap: 8px;
+      min-height: 8px;
+      grid-auto-flow: row;
+
+      > @{base}__resizer {
+        width: 5px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        cursor: col-resize;
+
+        &:before {
+          height: 24px;
+          width: 5px;
+          top: 50%;
+          position: relative;
+          transform: translateY(-50%);
+        }
+      }
+    }
+
+    &[data-type="col"] > &[data-type="row"] {
+      align-self: start;
+    }
+
+    &[data-type="tile"] {
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    &[data-type="divider"] {
+      .ant-divider {
+        margin: 4px 0;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1;
+
+        &:not(.ant-divider-with-text-center) {
+          background-color: currentColor;
+          opacity: 0.5;
+        }
+
+        &:before,
+        &:after {
+          border-top-color: currentColor;
+          opacity: 0.5;
+        }
+
+        &-inner-text > i {
+          margin-inline-end: 8px;
+        }
+      }
+    }
+
+    &[data-type="heading"] {
+      line-height: 1.25;
+      white-space: nowrap;
+
+      & > div:first-child {
+        display: flex;
+        flex-flow: row nowrap;
+
+        & > i {
+          margin-inline-end: 8px;
+        }
+
+        & > div {
+          flex: 1;
+
+          &:focus {
+            outline: none;
+            box-shadow: 0 0 0 1px @primary-3;
+          }
+        }
+      }
+    }
+  }
+
+  &__foot {
+    grid-area: foot;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    grid-gap: 8px;
+    padding: 4px 8px;
+    border-top: 1px solid @border-color-base;
+  }
+
+  &__aside {
+    grid-area: aside;
+    display: grid;
+    width: 240px;
+    overflow: hidden;
+    user-select: none;
+
+    &--form {
+      padding: 8px;
+      overflow: auto;
+    }
+
+    .ant-collapse {
+      display: grid;
+      overflow: hidden;
+      align-content: start;
+
+      &-header {
+        padding: 6px 16px !important;
+        padding-inline-start: 40px !important;
+      }
+
+      &-item {
+        display: grid;
+        overflow: hidden;
+        grid-template-rows: 32px minmax(auto, 1fr);
+      }
+
+      &-content {
+        &-active,
+        &-box {
+          padding: 0;
+          display: grid;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  &__widgetList {
+    display: grid;
+    overflow: hidden;
+    grid-template-rows: auto auto 1fr;
+
+    &--card {
+      border: 1px solid @border-color-base;
+      padding: 8px;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover {
+        border-color: @btn-primary-bg;
+        background-color: @background-color-base;
+      }
+    }
+
+    &--grid {
+      display: grid;
+      padding: 8px;
+      grid-gap: 8px;
+      grid-auto-flow: row;
+      grid-template-columns: 1fr 1fr;
+
+      &:last-child {
+        overflow: auto;
+      }
+
+      > span {
+        place-self: center;
+        color: @border-color-base;
+      }
+    }
+  }
+
+  &__colorPicker {
+    .ant-popover-arrow {
+      border-top-color: currentColor !important;
+      border-right-color: currentColor !important;
+    }
+
+    .ant-popover-inner-content {
+      padding: 0;
+
+      .block-picker > div:first-child {
+        display: none;
+      }
+    }
+  }
+
+  &__page[data-editing="true"] & {
+    &__ghost {
+      background-color: @primary-1;
+      border: 2px dashed @primary-5;
+      min-height: 32px;
+    }
+
+    &__item[data-type="row"] &__ghost {
+      grid-column-end: span 3;
+    }
+
+    &__grid {
+      user-select: none;
+    }
+
+    &__item {
+      margin-top: 24px;
+      padding: 8px;
+      outline: 1px dashed @border-color-base;
+
+      &[data-resizing="true"] {
+        padding: 0;
+        @{base}__rowContainer {
+          overflow: hidden;
+        }
+
+        @{base}__item {
+          margin: 0;
+
+          > @{base}__head,
+          > @{base}__empty {
+            display: none;
+          }
+        }
+      }
+
+      &[data-dragging="true"] > :first-child {
+        display: none;
+      }
+
+      &[data-hover="true"] {
+        outline-color: @primary-5;
+
+        > @{base}__resizer {
+          display: block;
+        }
+      }
+
+      &[data-selected="true"] {
+        outline-style: solid;
+        outline-color: @primary-5;
+      }
+    }
+  }
 }

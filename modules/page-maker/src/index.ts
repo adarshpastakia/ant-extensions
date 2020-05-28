@@ -1,6 +1,10 @@
 // @author    : Adarsh Pastakia
 // @version   : 0.0.1
-// @copyright : $date.year
+// @copyright : 2020
 // @license   : MIT
 
-export const PageMaker = 10;
+import "./i18n";
+
+export { EnumTypes } from "./utils/types";
+export type { PageConfig, PageItem, WidgetObject } from "./utils/types";
+export { PageMaker } from "./components/PageMaker";

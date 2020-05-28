@@ -1,0 +1,26 @@
+{
+  "label": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "preview": "Preview",
+    "row": "Row",
+    "col": "Column",
+    "heading": "Heading",
+    "divider": "Divider",
+    "widgets": "Widgets",
+    "config": "Config",
+    "noWidgets": "No widgets available"
+  },
+  "config": {
+    "title": "Title",
+    "color": "Color",
+    "info": "Info Tooltip",
+    "icon": "Icon class",
+    "size": "Text size",
+    "span": "Col span",
+    "height": "Row Height",
+    "border": "Bordered",
+    "expand": "Expandable"
+  }
+}
