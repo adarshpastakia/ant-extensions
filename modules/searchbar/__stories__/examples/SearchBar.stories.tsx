@@ -8,10 +8,9 @@ import { actions } from "@storybook/addon-actions";
 import { ConfigProvider, Menu, Select, Tag } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { I18nKey } from "./common/i18n";
 
 export const Example = () => {
-  const { i18n } = useTranslation(I18nKey);
+  const { i18n } = useTranslation();
 
   const eventsFromNames = actions("onQueryChange", "onFilterChanged", "onSearch", "onCollapsed");
 
