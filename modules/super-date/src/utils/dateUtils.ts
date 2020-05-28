@@ -33,11 +33,8 @@ import {
 } from "date-fns";
 import i18n from "i18next";
 import { I18nKey } from "./i18nKey";
-import { getLogger } from "./logger";
 import { isDate, isDateLike, isNil, isString } from "./predicates";
 import { DateParts, DateValue, IDatePart, ParsedDate, Type } from "./types";
-
-const Logger = getLogger("DateMath");
 
 /** @internal */
 export const getDateParts = (dt: DateValue): IDatePart | undefined => {
@@ -52,12 +49,10 @@ export const getDateParts = (dt: DateValue): IDatePart | undefined => {
 
 /** @internal */
 export const parseDate = (dt?: string, rounded?: "start" | "end"): ParsedDate => {
-  Logger.info("parseDate", dt);
   if (dt && isDate(dt)) {
     return parseISO(dt);
   } else if (dt && isDateLike(dt)) {
     const parts = getDateParts(dt);
-    Logger.debug("parseDate:parts", parts);
 
     if (parts) {
       const { part, op, diff } = parts;
@@ -115,7 +110,6 @@ export const parseDate = (dt?: string, rounded?: "start" | "end"): ParsedDate =>
 
 /** @internal */
 const parseDateValue = (dt: DateValue): [ParsedDate, ParsedDate] | ParsedDate => {
-  Logger.info("parseDateValue", dt);
   if (isNil(dt)) {
     return undefined;
   }
@@ -129,12 +123,10 @@ const parseDateValue = (dt: DateValue): [ParsedDate, ParsedDate] | ParsedDate =>
 
 /** @internal */
 const parseLabel = (dt: string): string => {
-  Logger.info("parseLabel", dt);
   if (isDate(dt)) {
     return format(parseISO(dt), "PP");
   } else if (isDateLike(dt)) {
     const parts = getDateParts(dt);
-    Logger.debug("parseLabel:parts", parts);
 
     if (parts) {
       let retVal;
@@ -156,7 +148,6 @@ const parseLabel = (dt: string): string => {
 
 /** @internal */
 export const parseDateLabel = (dt: DateValue): string => {
-  Logger.info("parseDateValue", dt);
   if (isNil(dt)) {
     return "";
   }
