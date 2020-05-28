@@ -3,15 +3,14 @@
 // @copyright : 2020
 // @license   : MIT
 
-import { PieChartOutlined, BarChartOutlined } from "@ant-design/icons";
-import { PageConfig, PageMaker, WidgetObject } from "@ant-extensions/page-maker";
+import { BarChartOutlined, PieChartOutlined } from "@ant-design/icons";
+import { EnumTypes, PageConfig, PageMaker, WidgetObject } from "@ant-extensions/page-maker";
 import "@mdi/font/css/materialdesignicons.css";
 import { actions } from "@storybook/addon-actions";
 import { boolean } from "@storybook/addon-knobs";
 import { ConfigProvider } from "antd";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { EnumTypes } from "../../src";
 
 const widgets: WidgetObject[] = [
   {
@@ -74,7 +73,8 @@ const config: PageConfig = [
             bordered: true,
             expandable: true,
             color: "#227093",
-            info: "<b>Information Card</b>\nThis tooltip can display information for the <u>widget</u>\nCan include <em>HTML tags</em>",
+            info:
+              "<b>Information Card</b>\nThis tooltip can display information for the <u>widget</u>\nCan include <em>HTML tags</em>",
             iconCls: "mdi mdi-chart-pie"
           }
         ]
