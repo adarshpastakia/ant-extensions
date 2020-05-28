@@ -88,15 +88,17 @@ const getNearestNode = (target: HTMLElement, types?: EnumTypes[]) => {
 
 const calculatePosition = (evt: React.DragEvent, neighbor: HTMLElement, isRow: boolean) => {
   const rect = neighbor.getBoundingClientRect();
-  if (isRow && evt.clientY < rect.top + rect.height / 2) {
-    neighbor.parentElement!.insertBefore(ghost, neighbor);
-  } else if (!isRow && evt.clientX < rect.left + rect.width / 2) {
-    neighbor.parentElement!.insertBefore(ghost, neighbor);
-  } else {
-    if (neighbor.nextElementSibling) {
-      neighbor.parentElement!.insertBefore(ghost, neighbor.nextElementSibling);
+  if (neighbor.parentElement) {
+    if (isRow && evt.clientY < rect.top + rect.height / 2) {
+      neighbor.parentElement.insertBefore(ghost, neighbor);
+    } else if (!isRow && evt.clientX < rect.left + rect.width / 2) {
+      neighbor.parentElement.insertBefore(ghost, neighbor);
     } else {
-      neighbor.parentElement!.appendChild(ghost);
+      if (neighbor.nextElementSibling) {
+        neighbor.parentElement.insertBefore(ghost, neighbor.nextElementSibling);
+      } else {
+        neighbor.parentElement.appendChild(ghost);
+      }
     }
   }
 };
@@ -126,8 +128,8 @@ const getColNeighbor = (evt: React.DragEvent, neighbor: HTMLElement) => {
     neighbor = getNearestNode(neighbor, [EnumTypes.COL]);
   }
 
-  if (neighbor.dataset.type === EnumTypes.ROW) {
-    neighbor.firstElementChild!.appendChild(ghost);
+  if (neighbor.dataset.type === EnumTypes.ROW && neighbor.firstElementChild) {
+    neighbor.firstElementChild.appendChild(ghost);
   } else {
     calculatePosition(evt, neighbor, false);
   }
@@ -146,8 +148,8 @@ const getTilePosition = (evt: React.DragEvent, neighbor: HTMLElement) => {
 
   if (neighbor.dataset.type === EnumTypes.COL) {
     neighbor.appendChild(ghost);
-  } else if (neighbor.dataset.type === EnumTypes.ROW) {
-    neighbor.firstElementChild!.appendChild(ghost);
+  } else if (neighbor.dataset.type === EnumTypes.ROW && neighbor.firstElementChild) {
+    neighbor.firstElementChild.appendChild(ghost);
   } else {
     calculatePosition(evt, neighbor, false);
   }
@@ -158,7 +160,7 @@ const getTilePosition = (evt: React.DragEvent, neighbor: HTMLElement) => {
  */
 export const onDragOver = (evt: React.DragEvent, dragging: IDragObject) => {
   evt.preventDefault();
-  let target = evt.target as HTMLElement;
+  const target = evt.target as HTMLElement;
   if (target !== ghost) {
     const node = getNearestNode(
       dragging.item ? getCorrectParent(target, dragging.item.id) : target
@@ -183,6 +185,7 @@ export const onDragOver = (evt: React.DragEvent, dragging: IDragObject) => {
 export const onDrop = (dragging: IDragObject) => {
   const parent = ghost.parentElement;
   if (parent) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const index = [...parent.children].indexOf(ghost);
     const nearest = getNearestNode(ghost);

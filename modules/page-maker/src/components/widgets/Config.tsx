@@ -156,3 +156,4 @@ export const Config: React.FC = React.memo(() => {
     </div>
   ) : null;
 });
+Config.displayName = "Config";

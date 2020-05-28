@@ -34,7 +34,7 @@ export const Item: React.FC<{
         e.stopPropagation();
       }
     },
-    [isEditing, editConfig]
+    [isEditing, editConfig, id]
   );
 
   const onMouseOver = useCallback(
@@ -72,3 +72,4 @@ export const Item: React.FC<{
     </div>
   );
 });
+Item.displayName = "Item";

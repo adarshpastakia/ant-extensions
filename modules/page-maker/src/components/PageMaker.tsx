@@ -23,3 +23,4 @@ export const PageMaker: React.FC<IProps> = React.memo((props) => {
     </ContextProvider>
   );
 });
+PageMaker.displayName = "PageMaker";

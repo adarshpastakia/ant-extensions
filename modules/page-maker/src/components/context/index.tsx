@@ -103,7 +103,7 @@ export const ContextProvider: React.FC<IProps> = ({
   };
 
   const removeConfig = (id: string) => {
-    let newConfig = [...(removeDeep(config, id) as AnyObject)];
+    const newConfig = [...(removeDeep(config, id) as AnyObject)];
     setConfig(newConfig);
     onChange && onChange(newConfig);
   };
@@ -189,3 +189,4 @@ export const ContextProvider: React.FC<IProps> = ({
     </Context.Provider>
   );
 };
+ContextProvider.displayName = "ContextProvider";

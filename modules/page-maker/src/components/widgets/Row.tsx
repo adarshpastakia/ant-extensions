@@ -22,18 +22,6 @@ export const Row: React.FC<IRowConfig> = React.memo((item) => {
     setRowHeight(height);
   }, [height]);
 
-  const onResizeStart = (e: React.MouseEvent) => {
-    startY = e.clientY;
-    if (refEl.current) {
-      refEl.current.dataset.resizing = "true";
-    }
-    setResizing(true);
-    document.body.style.cursor = "row-resize";
-    document.addEventListener("mousemove", onResize);
-    document.addEventListener("mouseup", onResizeEnd);
-    e.preventDefault();
-  };
-
   const onResize = (evt: MouseEvent) => {
     const newY = evt.clientY;
     if (refEl.current && refEl.current.lastElementChild) {
@@ -59,6 +47,18 @@ export const Row: React.FC<IRowConfig> = React.memo((item) => {
     document.removeEventListener("mouseup", onResizeEnd);
   };
 
+  const onResizeStart = (e: React.MouseEvent) => {
+    startY = e.clientY;
+    if (refEl.current) {
+      refEl.current.dataset.resizing = "true";
+    }
+    setResizing(true);
+    document.body.style.cursor = "row-resize";
+    document.addEventListener("mousemove", onResize);
+    document.addEventListener("mouseup", onResizeEnd);
+    e.preventDefault();
+  };
+
   return (
     <Item
       item={item}
@@ -72,3 +72,4 @@ export const Row: React.FC<IRowConfig> = React.memo((item) => {
     </Item>
   );
 });
+Row.displayName = "Row";

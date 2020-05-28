@@ -23,3 +23,4 @@ export const EditHead: React.FC<{
     </div>
   </div>
 ));
+EditHead.displayName = "EditHead";

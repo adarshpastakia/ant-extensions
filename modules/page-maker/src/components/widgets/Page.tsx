@@ -38,3 +38,4 @@ export const Page: React.FC = React.memo(() => {
     </div>
   );
 });
+Page.displayName = "Page";

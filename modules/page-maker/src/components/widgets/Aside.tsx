@@ -4,7 +4,7 @@
 // @license   : MIT
 
 import { CloseOutlined } from "@ant-design/icons";
-import { Button, Collapse } from "antd";
+import { Collapse } from "antd";
 import React, { useContext, useLayoutEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { I18nKey } from "../../utils/i18nKey";
@@ -19,7 +19,7 @@ export const Aside: React.FC = React.memo(() => {
   const [active, setActive] = useState<string | string[]>(["widgets"]);
 
   useLayoutEffect(() => {
-    setActive(selected ? ["config", ...active] : ["widgets"]);
+    setActive(selected ? ["config"] : ["widgets"]);
   }, [selected]);
 
   return (
@@ -41,3 +41,4 @@ export const Aside: React.FC = React.memo(() => {
     </div>
   );
 });
+Aside.displayName = "Aside";

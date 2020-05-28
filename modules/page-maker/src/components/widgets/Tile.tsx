@@ -65,3 +65,4 @@ export const Tile: React.FC<ITileConfig> = React.memo((item) => {
     </Item>
   );
 });
+Tile.displayName = "Tile";

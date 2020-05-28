@@ -25,13 +25,6 @@ export const Col: React.FC<IColConfig> = React.memo((item) => {
     setSpan(span);
   }, [span]);
 
-  const onResizeStart = (e: React.MouseEvent) => {
-    e.preventDefault();
-    document.body.style.cursor = "col-resize";
-    document.addEventListener("mousemove", onResize);
-    document.addEventListener("mouseup", onResizeEnd);
-  };
-
   const onResize = (evt: MouseEvent) => {
     const newX = evt.clientX;
     if (refEl.current && refEl.current.parentElement) {
@@ -50,6 +43,13 @@ export const Col: React.FC<IColConfig> = React.memo((item) => {
     document.body.style.cursor = "unset";
     document.removeEventListener("mousemove", onResize);
     document.removeEventListener("mouseup", onResizeEnd);
+  };
+
+  const onResizeStart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.body.style.cursor = "col-resize";
+    document.addEventListener("mousemove", onResize);
+    document.addEventListener("mouseup", onResizeEnd);
   };
 
   const isStretched = useMemo(() => {
@@ -91,3 +91,4 @@ export const Col: React.FC<IColConfig> = React.memo((item) => {
     </Item>
   );
 });
+Col.displayName = "Col";

@@ -26,3 +26,4 @@ export const Heading: React.FC<IHeadingConfig> = React.memo((item) => {
     </Item>
   );
 });
+Heading.displayName = "Heading";

@@ -31,3 +31,4 @@ export const Divider: React.FC<IDividerConfig> = React.memo((item) => {
     </Item>
   );
 });
+Divider.displayName = "Divider";

@@ -23,3 +23,4 @@ export const Card: React.FC<{
     </div>
   );
 });
+Card.displayName = "Card";

@@ -49,3 +49,4 @@ export const WidgetList: React.FC = React.memo(() => {
     </div>
   );
 });
+WidgetList.displayName = "WidgetList";
