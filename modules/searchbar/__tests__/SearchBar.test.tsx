@@ -3,12 +3,12 @@
 // @copyright : 2020
 // @license   : MIT
 
-import { render, RenderResult } from "@testing-library/react";
+import { fireEvent, render, RenderResult } from "@testing-library/react";
 import React from "react";
 import { TestWrapper } from "../../../jest/TestWrapper";
 import { EnumFieldType, EnumOperator, IFilterObject, SearchBar } from "../src";
 
-describe("RelativeDatePicker", () => {
+describe("SearchBar", () => {
   let fragment: RenderResult;
   const fields = [
     {
@@ -73,6 +73,29 @@ describe("RelativeDatePicker", () => {
 
   it("should render", (done) => {
     expect(fragment.container).toMatchSnapshot();
+    done();
+  });
+
+  it("should show menu", (done) => {
+    const tagEl = fragment.container.querySelector(".ant-ext-sb__filterTag--label");
+    if (tagEl) {
+      fireEvent.click(tagEl);
+      expect(fragment.baseElement.querySelector(".ant-dropdown-menu")).not.toBeNull();
+    }
+    done();
+  });
+
+  it("should show edit", (done) => {
+    const tagEl = fragment.container.querySelector(".ant-ext-sb__filterTag--label");
+    if (tagEl) {
+      fireEvent.click(tagEl);
+
+      const menuEl = fragment.baseElement.querySelector(".ant-dropdown-menu");
+      if (menuEl && menuEl.firstElementChild) {
+        fireEvent.click(menuEl.firstElementChild);
+        expect(fragment.baseElement.querySelector(".ant-ext-sb__filterForm")).not.toBeNull();
+      }
+    }
     done();
   });
 

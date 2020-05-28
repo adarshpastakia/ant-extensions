@@ -4,7 +4,7 @@
 // @license   : MIT
 
 import { FieldTimeOutlined } from "@ant-design/icons";
-import { Popover, Tag, Tooltip } from "antd";
+import { Input, Popover, Tag, Tooltip } from "antd";
 import i18next from "i18next";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
@@ -71,7 +71,12 @@ export const TagPicker: React.FC<AnyObject> = ({
           trigger="click"
           placement="bottomLeft"
         >
-          <Tag color="blue" icon={<FieldTimeOutlined />} className="ant-ext-sd__tag">
+          <Tag
+            color="blue"
+            icon={<FieldTimeOutlined />}
+            className="ant-ext-sd__tag"
+            data-testid="input-el"
+          >
             {displayLabel}
           </Tag>
         </Popover>

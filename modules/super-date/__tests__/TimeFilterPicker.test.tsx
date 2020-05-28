@@ -6,14 +6,14 @@
 import { fireEvent, render, RenderResult } from "@testing-library/react";
 import React from "react";
 import { TestWrapper } from "../../../jest/TestWrapper";
-import { DateUtils, RelativeRangePicker } from "../src";
+import { DateUtils, TimeFilterPicker } from "../src";
 
-describe("RelativeRangePicker", () => {
+describe("TimeFilterPicker", () => {
   let fragment: RenderResult;
   const initialValue = "$day|$day";
 
   beforeEach(() => {
-    fragment = render(<RelativeRangePicker value={initialValue} />, {
+    fragment = render(<TimeFilterPicker value={initialValue} />, {
       wrapper: TestWrapper
     });
   });
@@ -24,15 +24,15 @@ describe("RelativeRangePicker", () => {
 
   it("should render", (done) => {
     expect(fragment.container).toMatchSnapshot();
-    expect(fragment.queryByDisplayValue(DateUtils.label(initialValue))).not.toBeNull();
+    expect(fragment.queryByText(DateUtils.label(initialValue))).not.toBeNull();
     done();
   });
 
   it("should set quick value", (done) => {
     const newValue = "$week|$now";
-    fragment.rerender(<RelativeRangePicker value={newValue} />);
+    fragment.rerender(<TimeFilterPicker value={newValue} />);
     expect(fragment.container).toMatchSnapshot();
-    expect(fragment.queryByDisplayValue(DateUtils.label(newValue))).not.toBeNull();
+    expect(fragment.queryByText(DateUtils.label(newValue))).not.toBeNull();
 
     const inputEl = fragment.getByTestId("input-el");
     fireEvent.click(inputEl);
@@ -44,9 +44,9 @@ describe("RelativeRangePicker", () => {
 
   it("should set relative value", (done) => {
     const newValue = "$week-4|$week+4";
-    fragment.rerender(<RelativeRangePicker value={newValue} />);
+    fragment.rerender(<TimeFilterPicker value={newValue} />);
     expect(fragment.container).toMatchSnapshot();
-    expect(fragment.queryByDisplayValue(DateUtils.label(newValue))).not.toBeNull();
+    expect(fragment.queryByText(DateUtils.label(newValue))).not.toBeNull();
 
     const inputEl = fragment.getByTestId("input-el");
     fireEvent.click(inputEl);
@@ -58,9 +58,9 @@ describe("RelativeRangePicker", () => {
 
   it("should set absolute value", (done) => {
     const newValue = "2020-01-01T00:00:00.000Z|2020-01-31T11:59:59.000Z";
-    fragment.rerender(<RelativeRangePicker value={newValue} />);
+    fragment.rerender(<TimeFilterPicker value={newValue} />);
     expect(fragment.container).toMatchSnapshot();
-    expect(fragment.queryByDisplayValue(DateUtils.label(newValue))).not.toBeNull();
+    expect(fragment.queryByText(DateUtils.label(newValue))).not.toBeNull();
 
     const inputEl = fragment.getByTestId("input-el");
     fireEvent.click(inputEl);

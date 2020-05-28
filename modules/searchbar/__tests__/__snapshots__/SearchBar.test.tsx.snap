@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RelativeDatePicker should render 1`] = `
+exports[`SearchBar should render 1`] = `
 <div>
   <div
     class="ant-ext-sb__wrapper"
@@ -112,6 +112,7 @@ exports[`RelativeDatePicker should render 1`] = `
       </button>
       <span
         class="ant-tag ant-tag-blue ant-ext-sd__tag"
+        data-testid="input-el"
       >
         <span
           aria-label="field-time"
