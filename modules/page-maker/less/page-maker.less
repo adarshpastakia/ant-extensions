@@ -87,8 +87,10 @@
     box-shadow: 0 0 0 1px @background-color-base;
   }
 
-  &__tileExpander {
-    display: none;
+  &__tileInfo pre {
+    margin: 0;
+    font-family: @font-family;
+    white-space: pre-wrap;
   }
 
   &__head {
@@ -135,15 +137,23 @@
     }
   }
 
+  &__emptyCol {
+    place-self: center;
+    text-align: center;
+    color: @text-color-secondary;
+
+    .ant-divider {
+      font-size: 11px;
+      font-weight: 400;
+      color: @text-color-secondary;
+    }
+  }
+
   @base: .ant-ext-pm;
 
   &__item {
     box-sizing: content-box;
     position: relative;
-
-    &:hover @{base}__tileExpander {
-      display: inline-block;
-    }
 
     &[data-expanded="true"] {
       position: fixed;
@@ -155,8 +165,8 @@
       background-color: @component-background;
       box-shadow: 0 0 10px 1px @border-color-base;
 
-      @{base}__tileExpander {
-        display: inline-block;
+      @{base}__tileHead {
+        padding: 3px 8px;
       }
     }
 
@@ -298,7 +308,6 @@
 
       &-header {
         padding: 6px 16px !important;
-        padding-inline-start: 40px !important;
       }
 
       &-item {
@@ -348,7 +357,7 @@
 
       > span {
         place-self: center;
-        color: @border-color-base;
+        color: @text-color-secondary;
       }
     }
   }

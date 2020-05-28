@@ -4,8 +4,10 @@
 // @license   : MIT
 
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Divider as AntDivider } from "antd";
 import React, { useContext, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { I18nKey } from "../../utils/i18nKey";
 import { EnumTypes, IColConfig } from "../../utils/types";
 import { Context } from "../context";
 import { Divider } from "./Divider";
@@ -15,6 +17,7 @@ import { Row } from "./Row";
 import { Tile } from "./Tile";
 
 export const Col: React.FC<IColConfig> = React.memo((item) => {
+  const { t } = useTranslation(I18nKey);
   const { isEditing, updateConfig, addWidget } = useContext(Context);
   const { id, children, colSpan } = item;
 
@@ -78,7 +81,9 @@ export const Col: React.FC<IColConfig> = React.memo((item) => {
           }
         })}
       {isEditing && (!children || children.length === 0) && (
-        <div style={{ placeSelf: "center" }}>
+        <div className="ant-ext-pm__emptyCol">
+          <div>{t("label.drag")}</div>
+          <AntDivider>or</AntDivider>
           <Button
             icon={<PlusCircleOutlined />}
             onClick={(e) => [addWidget(item.id), e.stopPropagation()]}

@@ -10,7 +10,8 @@
     "divider": "Divider",
     "widgets": "Widgets",
     "config": "Config",
-    "noWidgets": "No widgets available"
+    "noWidgets": "No widgets available",
+    "drag": "Drag a widget from the sidebar"
   },
   "config": {
     "title": "Title",

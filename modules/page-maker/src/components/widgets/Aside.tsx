@@ -19,22 +19,23 @@ export const Aside: React.FC = React.memo(() => {
   const [active, setActive] = useState<string | string[]>(["widgets"]);
 
   useLayoutEffect(() => {
-    setActive(selected ? ["config"] : ["widgets"]);
+    setActive(selected ? ["config", "widgets"] : ["widgets"]);
   }, [selected]);
 
   return (
     <div className="ant-ext-pm__aside">
-      <Collapse activeKey={active} onChange={setActive}>
+      <Collapse activeKey={active}>
         {selected && (
           <Collapse.Panel
             key="config"
+            showArrow={false}
             header={t("label.config")}
             extra={<CloseOutlined onClick={() => editConfig(undefined)} />}
           >
             <Config />
           </Collapse.Panel>
         )}
-        <Collapse.Panel key="widgets" header={t("label.widgets")}>
+        <Collapse.Panel showArrow={false} key="widgets" header={t("label.widgets")}>
           <WidgetList />
         </Collapse.Panel>
       </Collapse>

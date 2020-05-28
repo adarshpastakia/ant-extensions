@@ -35,7 +35,10 @@ export const Tile: React.FC<ITileConfig> = React.memo((item) => {
         <label style={style}>{item.title}</label>
         <div>
           {item.info && (
-            <Tooltip overlay={item.info}>
+            <Tooltip
+              overlay={<pre dangerouslySetInnerHTML={{ __html: item.info }} />}
+              overlayClassName="ant-ext-pm__tileInfo"
+            >
               <button>
                 <InfoCircleOutlined />
               </button>

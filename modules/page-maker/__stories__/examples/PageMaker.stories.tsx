@@ -45,7 +45,7 @@ const config: PageConfig = [
             type: EnumTypes.TILE,
             title: "Tile head",
             bordered: true,
-            expandable: true,
+            expandable: false,
             color: "#227093"
           }
         ]
@@ -74,6 +74,7 @@ const config: PageConfig = [
             bordered: true,
             expandable: true,
             color: "#227093",
+            info: "<b>Information Card</b>\nThis tooltip can display information for the <u>widget</u>\nCan include <em>HTML tags</em>",
             iconCls: "mdi mdi-chart-pie"
           }
         ]
