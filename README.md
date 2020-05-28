@@ -39,6 +39,11 @@
     ![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/@ant-extensions/searchbar?style=flat-square&labelColor=363636&)
 
 
+- ##### [page-maker](./modules/page-maker/README.md): Drag-Drop page builder for making dashboards
+    ![npm (scoped)](https://img.shields.io/npm/v/@ant-extensions/page-maker?logo=npm&style=flat-square&labelColor=363636&)
+    ![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/@ant-extensions/page-maker?style=flat-square&labelColor=363636&)
+
+
 
 ---
 
