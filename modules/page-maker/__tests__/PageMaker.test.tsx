@@ -4,7 +4,6 @@
 // @license   : MIT
 
 import { PieChartOutlined } from "@ant-design/icons";
-import { RelativeRangePicker } from "@ant-extensions/super-date/src";
 import { fireEvent, render, RenderResult } from "@testing-library/react";
 import React from "react";
 import { TestWrapper } from "../../../jest/TestWrapper";
