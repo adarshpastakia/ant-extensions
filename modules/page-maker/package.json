@@ -7,9 +7,8 @@
   "description": "Ant React Extended - Page builder for building dashboards",
   "keywords": [
     "antd.4",
-    "searchbar",
-    "filterbar",
-    "kibana searchbar"
+    "page maker",
+    "dnd layout builder"
   ],
   "repository": {
     "type": "git",
