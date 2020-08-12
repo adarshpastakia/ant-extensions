@@ -9,7 +9,7 @@ import Icon, {
   EyeInvisibleOutlined,
   EyeOutlined
 } from "@ant-design/icons";
-import { DateUtils } from "@ant-extensions/super-date/src";
+import { DateUtils } from "@ant-extensions/super-date";
 import { Checkbox, Dropdown, Menu, Tag, Tooltip } from "antd";
 import React, { useContext, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
