@@ -128,10 +128,9 @@ export const ContextProvider: React.FC<IProps> = ({
       }
       if (id) {
         const _o = findDeep(newConfig, id);
-        if (_o && Array.isArray(_o.children)) {
+        if (_o && Array.isArray(_o.children) && _o.children.length > 0) {
           _o.children.splice(index, 0, item as AnyObject);
-        }
-        if (_o && !_o.children) {
+        } else if (_o) {
           _o.children = [item];
         }
       } else {
