@@ -14,7 +14,7 @@ import { DatePresets } from "./DatePresets";
 
 export const DateDropdown: React.FC<
   {
-    dropdown: RefObject<Popover>;
+    dropdown: RefObject<typeof Popover>;
   } & BaseProps
 > = React.memo(({ dropdown: { current: popup }, ...props }) => {
   const { t } = useTranslation(I18nKey);
@@ -27,6 +27,7 @@ export const DateDropdown: React.FC<
       defaultActiveKey={activeTab}
       animated={{ tabPane: false, inkBar: true }}
       onChange={() => {
+        // @ts-ignore
         popup && popup.forceUpdate();
       }}
     >

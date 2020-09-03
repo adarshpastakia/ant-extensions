@@ -25,7 +25,7 @@ export const TagPicker: React.FC<AnyObject> = ({
     i18n: { language }
   } = useTranslation(I18nKey);
 
-  const refDropdown = useRef<Popover>(null);
+  const refDropdown = useRef<typeof Popover>(null);
   const [visible, setVisible] = useState(false);
 
   const [_value, setValue] = useState(value);

@@ -12,7 +12,7 @@ import { DateInput } from "./DateInput";
 
 export const BasePicker = React.forwardRef<Input, AnyObject>(
   ({ value, onChange, onVisibleChange, readOnly, disabled, pickerEl: E, ...props }, ref) => {
-    const refDropdown = useRef<Popover>(null);
+    const refDropdown = useRef<typeof Popover>(null);
     const [visible, setVisible] = useState(false);
 
     const [_value, setValue] = useState(value);
