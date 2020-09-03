@@ -105,6 +105,7 @@ export const ContextProvider: React.FC<IProps> = ({
   const removeConfig = (id: string) => {
     const newConfig = [...(removeDeep(config, id) as AnyObject)];
     setConfig(newConfig);
+    setSelected(undefined);
     onChange && onChange(newConfig);
   };
 
