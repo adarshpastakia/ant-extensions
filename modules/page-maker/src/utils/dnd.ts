@@ -185,9 +185,7 @@ export const onDragOver = (evt: React.DragEvent, dragging: IDragObject) => {
 export const onDrop = (dragging: IDragObject) => {
   const parent = ghost.parentElement;
   if (parent) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
-    const index = [...parent.children].indexOf(ghost);
+    const index = Array.from(parent.children).indexOf(ghost);
     const nearest = getNearestNode(ghost);
     const { id, type } = nearest ? nearest.dataset : { id: undefined, type: undefined };
     ghost.remove();

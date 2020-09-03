@@ -4,7 +4,7 @@
 // @license   : MIT
 
 import { FieldTimeOutlined } from "@ant-design/icons";
-import { Input, Popover, Tag, Tooltip } from "antd";
+import { Popover, Tag, Tooltip } from "antd";
 import i18next from "i18next";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";

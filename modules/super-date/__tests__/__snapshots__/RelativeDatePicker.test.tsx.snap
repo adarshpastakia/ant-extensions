@@ -6,7 +6,7 @@ exports[`RelativeDatePicker should render 1`] = `
     class="ant-ext-sd__input"
   >
     <span
-      class="ant-input-affix-wrapper"
+      class="ant-input-affix-wrapper ant-input-affix-wrapper-readonly"
     >
       <input
         class="ant-input"
@@ -50,7 +50,7 @@ exports[`RelativeDatePicker should set absolute value 1`] = `
     class="ant-ext-sd__input"
   >
     <span
-      class="ant-input-affix-wrapper"
+      class="ant-input-affix-wrapper ant-input-affix-wrapper-readonly"
     >
       <input
         class="ant-input"
@@ -94,7 +94,7 @@ exports[`RelativeDatePicker should set quick value 1`] = `
     class="ant-ext-sd__input"
   >
     <span
-      class="ant-input-affix-wrapper"
+      class="ant-input-affix-wrapper ant-input-affix-wrapper-readonly"
     >
       <input
         class="ant-input"

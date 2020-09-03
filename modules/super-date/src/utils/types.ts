@@ -8,6 +8,10 @@ import * as React from "react";
 
 export type ChangeHandler = (value: DateValue) => void;
 
+export interface Popover {
+  forceUpdate: () => void;
+}
+
 export interface BaseProps {
   value: DateValue;
   onChange?: ChangeHandler;

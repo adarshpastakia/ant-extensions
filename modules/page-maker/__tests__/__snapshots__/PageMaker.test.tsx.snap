@@ -670,7 +670,7 @@ exports[`PageMaker should be editable 1`] = `
                   Drag a widget from the sidebar
                 </div>
                 <div
-                  class="ant-divider ant-divider-horizontal ant-divider-with-text-center"
+                  class="ant-divider ant-divider-horizontal ant-divider-with-text ant-divider-with-text-center"
                   role="separator"
                 >
                   <span
