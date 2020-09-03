@@ -17,6 +17,7 @@ export const SearchBar: React.FC<ISearchProps & IFilterProps> = ({
   query = "",
   filters = [],
   fields = [],
+  emptyFields,
   disabled = false,
   hideFilters = false,
   collapsed: _collapsed = true,
@@ -61,7 +62,7 @@ export const SearchBar: React.FC<ISearchProps & IFilterProps> = ({
           {!hideFilters && <FilterToggle collapsed={collapsed} onToggle={toggleFilters} />}
         </SearchbarWrapper>
 
-        {!hideFilters && !collapsed && <FilterbarWrapper {...{ disabled, fields }} />}
+        {!hideFilters && !collapsed && <FilterbarWrapper {...{ disabled, fields, emptyFields }} />}
       </div>
     </ContextProvider>
   );

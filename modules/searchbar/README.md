@@ -23,7 +23,7 @@ import React, { useState } from "react";
 import { SearchBar } from "@ant-extensions/searchbar";
 
 export const Tester = () => {
-  return <SearchBar collapsed={false} filters={[]} fields={[]} />;
+  return <SearchBar collapsed={false} filters={[]} fields={[]} emptyField={"Message when fields list is empty"} />;
 };
 ```
 

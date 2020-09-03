@@ -61,6 +61,7 @@ export const Example = () => {
               active: true
             }
           ]}
+          emptyFields="Select schema to enable filters"
           fields={[
             {
               key: "string",

@@ -16,6 +16,7 @@ export const FilterBar: React.FC<IFilterProps> = React.memo(
     filters = [],
     disabled = false,
     fields = [],
+    emptyFields,
     onFilterAdded,
     onFilterChanged,
     onFilterRemoved,
@@ -25,7 +26,7 @@ export const FilterBar: React.FC<IFilterProps> = React.memo(
       <ContextProvider
         {...{ filters, fields, onFilterAdded, onFilterChanged, onFilterRemoved, onFilterUpdate }}
       >
-        <FilterbarWrapper {...{ disabled, fields }} />
+        <FilterbarWrapper {...{ disabled, fields, emptyFields }} />
       </ContextProvider>
     );
   }

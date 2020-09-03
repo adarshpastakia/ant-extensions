@@ -12,13 +12,11 @@ import { FilterTag } from "./FilterTag";
 import { GlobalMenu } from "./GlobalMenu";
 
 export const FilterbarWrapper: React.FC<IFilterProps> = React.memo(
-  ({ disabled = false, fields = [] }) => {
+  ({ disabled = false, fields = [], emptyFields }) => {
     const { filters, updateFilter } = useContext(Context);
 
-    useEffect(() => {
-      if (!fields || fields.length === 0) {
-        throw new Error("Field list is required for filters");
-      }
+    const emptyList = useMemo(() => {
+      return !fields || fields.length === 0;
     }, [fields]);
 
     const sorted = useMemo(
@@ -35,19 +33,21 @@ export const FilterbarWrapper: React.FC<IFilterProps> = React.memo(
 
     return (
       <div className="ant-ext-sb__filterBar">
-        <GlobalMenu disabled={disabled} />
+        <GlobalMenu disabled={disabled || emptyList} />
         {sorted.map((filter, index) =>
           filter.isTimeField ? (
             <TimeFilterPicker
               key={index}
+              disabled={disabled || emptyList}
               value={filter.value ? filter.value.toString() : "$now"}
               onChange={(v) => updateFilter(index, { value: v })}
             />
           ) : (
-            <FilterTag key={index} index={index} filter={filter} />
+            <FilterTag key={index} index={index} filter={filter} disabled={disabled || emptyList} />
           )
         )}
-        <AddButton disabled={disabled} />
+        <AddButton disabled={disabled || emptyList} />
+        {emptyList && emptyFields && <div>{emptyFields}</div>}
       </div>
     );
   }

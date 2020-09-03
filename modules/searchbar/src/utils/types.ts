@@ -199,6 +199,11 @@ export interface IFilterProps {
   disabled?: boolean;
 
   /**
+   * Message for empty field list
+   */
+  emptyFields?: string;
+
+  /**
    * On add filter
    * @param filter
    */
