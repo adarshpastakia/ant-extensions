@@ -1,6 +1,6 @@
 {
   "name": "@ant-extensions/super-date",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publishConfig": {
     "access": "public"
   },
@@ -31,7 +31,6 @@
     "react-dom": "^16.13.1",
     "react-i18next": "^11.7.2"
   },
-  "devDependencies": {},
   "scripts": {
     "build:lib": "tsc -p ./tsconfig.build.json",
     "build:style": "lessc --js --npm-import=\"prefix=~\" less/super-date.less dist/super-date.css",

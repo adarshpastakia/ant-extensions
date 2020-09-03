@@ -1,6 +1,6 @@
 {
   "name": "@ant-extensions/searchbar",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "publishConfig": {
     "access": "public"
   },
@@ -25,14 +25,13 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
-    "@ant-extensions/super-date": "^0.0.5",
+    "@ant-extensions/super-date": "^0.0.6",
     "antd": "^4.6.2",
     "i18next": "^19.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.7.2"
   },
-  "devDependencies": {},
   "scripts": {
     "build:lib": "tsc -p ./tsconfig.build.json",
     "build:style": "lessc --js --npm-import=\"prefix=~\" less/searchbar.less dist/searchbar.css",
