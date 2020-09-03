@@ -1,6 +1,6 @@
 // @ts-ignore
 module.exports = {
-  stories: ["../modules/**/__stories__/*.stories.(tsx|mdx)"],
+  stories: ["../modules/**/__stories__/*.stories.@(tsx|mdx)"],
   addons: [
     "@storybook/preset-ant-design",
     {
@@ -27,7 +27,10 @@ module.exports = {
       test: /\.(ts|tsx)$/,
       use: [
         {
-          loader: require.resolve("ts-loader")
+          loader: require.resolve("ts-loader"),
+          options: {
+            transpileOnly: true
+          }
         },
         {
           loader: require.resolve("react-docgen-typescript-loader"),

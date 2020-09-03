@@ -23,20 +23,18 @@
     "lib": "src"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.0.6",
-    "antd": "^4.1.4",
-    "grapesjs": "^0.16.12",
-    "grapesjs-react": "^3.0.4",
-    "i18next": "^19.4.2",
+    "@ant-design/icons": "^4.2.2",
+    "antd": "^4.6.2",
+    "grapesjs": "^0.16.18",
+    "grapesjs-react": "^3.1.1",
+    "i18next": "^19.7.0",
     "react": "^16.13.1",
     "react-color": "^2.18.1",
     "react-dom": "^16.13.1",
-    "react-i18next": "^11.3.5"
+    "react-i18next": "^11.7.2"
   },
   "devDependencies": {
-    "@mdi/font": "^5.2.45",
-    "@storybook/addon-knobs": "^5.3.18",
-    "@types/storybook__addon-knobs": "^5.2.1"
+    "@mdi/font": "^5.5.55"
   },
   "scripts": {
     "build:lib": "tsc -p ./tsconfig.build.json",

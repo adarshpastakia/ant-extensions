@@ -24,18 +24,15 @@
     "lib": "src"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.0.6",
+    "@ant-design/icons": "^4.2.2",
     "@ant-extensions/super-date": "^0.0.5",
-    "antd": "^4.1.4",
-    "i18next": "^19.4.2",
+    "antd": "^4.6.2",
+    "i18next": "^19.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-i18next": "^11.3.5"
+    "react-i18next": "^11.7.2"
   },
-  "devDependencies": {
-    "@storybook/addon-knobs": "^5.3.18",
-    "@types/storybook__addon-knobs": "^5.2.1"
-  },
+  "devDependencies": {},
   "scripts": {
     "build:lib": "tsc -p ./tsconfig.build.json",
     "build:style": "lessc --js --npm-import=\"prefix=~\" less/searchbar.less dist/searchbar.css",

@@ -23,18 +23,15 @@
     "lib": "src"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.0.6",
-    "antd": "^4.1.4",
-    "date-fns": "^2.12.0",
-    "i18next": "^19.4.2",
+    "@ant-design/icons": "^4.2.2",
+    "antd": "^4.6.2",
+    "date-fns": "^2.16.1",
+    "i18next": "^19.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-i18next": "^11.3.5"
+    "react-i18next": "^11.7.2"
   },
-  "devDependencies": {
-    "@storybook/addon-knobs": "^5.3.18",
-    "@types/storybook__addon-knobs": "^5.2.1"
-  },
+  "devDependencies": {},
   "scripts": {
     "build:lib": "tsc -p ./tsconfig.build.json",
     "build:style": "lessc --js --npm-import=\"prefix=~\" less/super-date.less dist/super-date.css",
