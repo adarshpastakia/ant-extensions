@@ -92,7 +92,7 @@ describe("PageMaker", () => {
 
   beforeEach(() => {
     fragment = render(
-      <PageMaker config={config} widgets={widgets} renderWidget={(widgetId) => <div />} />,
+      <PageMaker config={config} widgets={widgets} renderWidget={(_widgetId) => <div />} />,
       {
         wrapper: TestWrapper
       }
@@ -110,7 +110,7 @@ describe("PageMaker", () => {
 
   it("should be editable", (done) => {
     fragment.rerender(
-      <PageMaker config={config} widgets={widgets} renderWidget={(widgetId) => <div />} isEditing />
+      <PageMaker config={config} widgets={widgets} renderWidget={(_widgetId) => <div />} isEditing />
     );
     expect(fragment.container).toMatchSnapshot();
 

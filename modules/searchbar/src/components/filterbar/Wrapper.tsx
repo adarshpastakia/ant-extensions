@@ -4,7 +4,7 @@
 // @license   : MIT
 
 import { TimeFilterPicker } from "@ant-extensions/super-date";
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { IFilterProps } from "../../utils/types";
 import { Context } from "../context";
 import { AddButton } from "./AddButton";

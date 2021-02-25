@@ -46,7 +46,7 @@ export const FilterTag: React.FC<{
           : _value}
       </span>
     ) : undefined;
-  }, [field, value, fields, t]);
+  }, [fields, value, type, field, compare]);
 
   const displayLabel = useMemo(() => {
     const _field = fields.find((f) => f.key === field);

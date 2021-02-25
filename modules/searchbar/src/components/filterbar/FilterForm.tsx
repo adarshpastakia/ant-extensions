@@ -34,7 +34,7 @@ export const FilterForm: React.FC<{
       setOperator(filter.operator);
       setField(fields.find((f) => f.key === filter.field));
     }
-  }, []);
+  }, [fields, filter, form]);
 
   const operators = useMemo(() => {
     if (fieldObject) {

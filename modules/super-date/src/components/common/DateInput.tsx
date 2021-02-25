@@ -16,10 +16,10 @@ export const DateInput = React.forwardRef<Input, Omit<InputProps, "onChange">>(
     const {
       i18n: { language }
     } = useTranslation(I18nKey);
-    const displayLabel = useMemo(() => (value ? parseDateLabel(value.toString()) : ""), [
-      value,
-      language
-    ]);
+    const displayLabel = useMemo(
+      () => (value && !!language ? parseDateLabel(value.toString()) : ""),
+      [value, language]
+    );
 
     const isDisabled = useMemo(() => disabled || readOnly, [disabled, readOnly]);
 

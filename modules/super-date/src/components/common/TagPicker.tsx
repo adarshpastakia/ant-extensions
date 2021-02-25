@@ -53,10 +53,10 @@ export const TagPicker: React.FC<AnyObject> = ({
     },
     [onVisibleChange, isDisabled]
   );
-  const displayLabel = useMemo(() => (value ? parseDateLabel(value.toString()) : ""), [
-    value,
-    language
-  ]);
+  const displayLabel = useMemo(
+    () => (value && !!language ? parseDateLabel(value.toString()) : ""),
+    [value, language]
+  );
 
   return (
     <I18nextProvider i18n={i18next}>

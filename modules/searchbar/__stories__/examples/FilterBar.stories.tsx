@@ -3,7 +3,7 @@
 // @copyright : 2020
 // @license   : MIT
 
-import { EnumFieldType, EnumOperator, FilterBar, SearchBar } from "@ant-extensions/searchbar";
+import { EnumFieldType, EnumOperator, FilterBar } from "@ant-extensions/searchbar";
 import { actions } from "@storybook/addon-actions";
 import { ConfigProvider, Tag } from "antd";
 import i18next from "i18next";

@@ -26,7 +26,7 @@ export const Tile: React.FC<ITileConfig> = React.memo((item) => {
 
   const [expanded, setExpanded] = useState(false);
 
-  const widget = useMemo(() => findWidget(item.widgetId), [item.widgetId]);
+  const widget = useMemo(() => findWidget(item.widgetId), [findWidget, item.widgetId]);
 
   return (
     <Item item={item} expanded={!isEditing && expanded}>

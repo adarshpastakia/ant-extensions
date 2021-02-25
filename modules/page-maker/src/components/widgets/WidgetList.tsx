@@ -38,7 +38,7 @@ export const WidgetList: React.FC = React.memo(() => {
         setList(newList);
       }
     }
-  }, [search]);
+  }, [search, widgets]);
 
   return (
     <div className="ant-ext-pm__widgetList">
