@@ -24,13 +24,13 @@
     "lib": "src"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.2.2",
+    "@ant-design/icons": "^4.5.0",
     "@ant-extensions/super-date": "^0.0.6",
-    "antd": "^4.6.2",
-    "i18next": "^19.7.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-i18next": "^11.7.2"
+    "antd": "^4.12.3",
+    "i18next": "^19.9.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-i18next": "^11.8.8"
   },
   "scripts": {
     "build:lib": "tsc -p ./tsconfig.build.json",
