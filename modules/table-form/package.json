@@ -1,0 +1,47 @@
+{
+  "name": "@ant-extensions/table-form",
+  "version": "0.0.0",
+  "private": true,
+  "publishConfig": {
+    "access": "private"
+  },
+  "description": "Ant React Extended - Tabular form",
+  "keywords": [
+    "antd.4",
+    "tabular form",
+    "edtable table"
+  ],
+  "repository": {
+    "type": "git",
+    "directory": "modules/table-form",
+    "url": "https://github.com/adarshpastakia/ant-extensions"
+  },
+  "author": "Adarsh Pastakia <adarshpastakia@outlook.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "__tests__",
+    "lib": "src"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.0.6",
+    "antd": "^4.1.4",
+    "i18next": "^19.4.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-i18next": "^11.3.5"
+  },
+  "devDependencies": {
+    "@storybook/addon-knobs": "^5.3.18",
+    "@types/storybook__addon-knobs": "^5.2.1"
+  },
+  "scripts": {
+    "build:lib": "tsc -p ./tsconfig.build.json",
+    "build:style": "lessc --js --npm-import=\"prefix=~\" less/table-form.less dist/table-form.css",
+    "build": "npm-run-all build:lib build:style",
+    "predist": "rm -rf ./dist",
+    "dist": "yarn build",
+    "start": "tsc -p ./tsconfig.build.json -w",
+    "version": "echo Make changelog"
+  }
+}
