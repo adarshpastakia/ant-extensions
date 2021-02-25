@@ -27,6 +27,15 @@ export const Tester = () => {
 };
 ```
 
+```tsx
+import React, { useState } from "react";
+import { FilterBar } from "@ant-extensions/searchbar";
+
+export const Tester = () => {
+  return <FilterBar filters={[]} fields={[]} emptyField={"Message when fields list is empty"} />;
+};
+```
+
 ---
 
 > `FieldSelect`
