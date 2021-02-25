@@ -36,6 +36,8 @@ export const Tester = () => {
 };
 ```
 
+> Provide a default time filter `{ isTimeField: true, isRequired: true }` to enable time input
+
 ---
 
 > `FieldSelect`
