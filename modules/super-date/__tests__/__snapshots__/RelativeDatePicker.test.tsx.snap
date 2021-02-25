@@ -25,7 +25,6 @@ exports[`RelativeDatePicker should render 1`] = `
         >
           <svg
             aria-hidden="true"
-            class=""
             data-icon="calendar"
             fill="currentColor"
             focusable="false"
@@ -69,7 +68,6 @@ exports[`RelativeDatePicker should set absolute value 1`] = `
         >
           <svg
             aria-hidden="true"
-            class=""
             data-icon="calendar"
             fill="currentColor"
             focusable="false"
@@ -113,7 +111,6 @@ exports[`RelativeDatePicker should set quick value 1`] = `
         >
           <svg
             aria-hidden="true"
-            class=""
             data-icon="calendar"
             fill="currentColor"
             focusable="false"

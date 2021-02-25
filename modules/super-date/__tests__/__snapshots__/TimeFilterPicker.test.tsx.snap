@@ -13,7 +13,6 @@ exports[`TimeFilterPicker should render 1`] = `
     >
       <svg
         aria-hidden="true"
-        class=""
         data-icon="field-time"
         fill="currentColor"
         focusable="false"
@@ -52,7 +51,6 @@ exports[`TimeFilterPicker should set absolute value 1`] = `
     >
       <svg
         aria-hidden="true"
-        class=""
         data-icon="field-time"
         fill="currentColor"
         focusable="false"
@@ -91,7 +89,6 @@ exports[`TimeFilterPicker should set quick value 1`] = `
     >
       <svg
         aria-hidden="true"
-        class=""
         data-icon="field-time"
         fill="currentColor"
         focusable="false"
@@ -130,7 +127,6 @@ exports[`TimeFilterPicker should set relative value 1`] = `
     >
       <svg
         aria-hidden="true"
-        class=""
         data-icon="field-time"
         fill="currentColor"
         focusable="false"

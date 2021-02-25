@@ -12,7 +12,7 @@ exports[`SearchBar should render 1`] = `
         class="ant-input-group ant-input-group-compact ant-ext-sb__inputGroup"
       >
         <button
-          class="ant-btn ant-ext-sb__filterToggle ant-btn-primary ant-btn-background-ghost"
+          class="ant-btn ant-btn-primary ant-btn-background-ghost ant-ext-sb__filterToggle"
           type="button"
         >
           <span
@@ -23,7 +23,16 @@ exports[`SearchBar should render 1`] = `
               data-show="true"
               title="4"
             >
-              0
+              <span
+                class="ant-scroll-number-only"
+                style="transition: none;"
+              >
+                <p
+                  class="ant-scroll-number-only-unit current"
+                >
+                  4
+                </p>
+              </span>
             </sup>
           </span>
           <span
@@ -37,7 +46,7 @@ exports[`SearchBar should render 1`] = `
           class="ant-input-group ant-input-group-compact ant-ext-sb__searchInput"
         >
           <span
-            class="ant-input-search ant-input-search-enter-button ant-input-group-wrapper"
+            class="ant-input-group-wrapper ant-input-search ant-input-search-with-button"
           >
             <span
               class="ant-input-wrapper ant-input-group"
@@ -52,7 +61,7 @@ exports[`SearchBar should render 1`] = `
                 class="ant-input-group-addon"
               >
                 <button
-                  class="ant-btn ant-input-search-button ant-btn-primary"
+                  class="ant-btn ant-btn-primary ant-input-search-button"
                   type="button"
                 >
                   <span
@@ -62,7 +71,6 @@ exports[`SearchBar should render 1`] = `
                   >
                     <svg
                       aria-hidden="true"
-                      class=""
                       data-icon="search"
                       fill="currentColor"
                       focusable="false"
@@ -86,7 +94,7 @@ exports[`SearchBar should render 1`] = `
       class="ant-ext-sb__filterBar"
     >
       <button
-        class="ant-btn ant-dropdown-trigger ant-btn-link ant-btn-icon-only"
+        class="ant-btn ant-btn-link ant-btn-icon-only ant-dropdown-trigger"
         type="button"
       >
         <span
@@ -96,7 +104,6 @@ exports[`SearchBar should render 1`] = `
         >
           <svg
             aria-hidden="true"
-            class=""
             data-icon="setting"
             fill="currentColor"
             focusable="false"
@@ -121,7 +128,6 @@ exports[`SearchBar should render 1`] = `
         >
           <svg
             aria-hidden="true"
-            class=""
             data-icon="field-time"
             fill="currentColor"
             focusable="false"
@@ -168,7 +174,7 @@ exports[`SearchBar should render 1`] = `
           </span>
         </label>
         <span
-          class="ant-ext-sb__filterTag--label ant-dropdown-trigger"
+          class="ant-dropdown-trigger ant-ext-sb__filterTag--label"
         >
           My Label87
         </span>
@@ -180,7 +186,6 @@ exports[`SearchBar should render 1`] = `
         >
           <svg
             aria-hidden="true"
-            class=""
             data-icon="close"
             fill="currentColor"
             focusable="false"
@@ -218,7 +223,7 @@ exports[`SearchBar should render 1`] = `
           </span>
         </label>
         <span
-          class="ant-ext-sb__filterTag--label ant-dropdown-trigger"
+          class="ant-dropdown-trigger ant-ext-sb__filterTag--label"
         >
           My Label
         </span>
@@ -230,7 +235,6 @@ exports[`SearchBar should render 1`] = `
         >
           <svg
             aria-hidden="true"
-            class=""
             data-icon="close"
             fill="currentColor"
             focusable="false"
@@ -268,7 +272,7 @@ exports[`SearchBar should render 1`] = `
           </span>
         </label>
         <span
-          class="ant-ext-sb__filterTag--label ant-dropdown-trigger"
+          class="ant-dropdown-trigger ant-ext-sb__filterTag--label"
         >
           <span
             class="ant-ext-sb__filterTag--clip"
@@ -294,7 +298,6 @@ exports[`SearchBar should render 1`] = `
         >
           <svg
             aria-hidden="true"
-            class=""
             data-icon="close"
             fill="currentColor"
             focusable="false"
@@ -309,7 +312,7 @@ exports[`SearchBar should render 1`] = `
         </span>
       </span>
       <span
-        class="ant-tag ant-ext-sb__addFilter ant-dropdown-trigger"
+        class="ant-tag ant-dropdown-trigger ant-ext-sb__addFilter"
       >
         Add Filter
       </span>
