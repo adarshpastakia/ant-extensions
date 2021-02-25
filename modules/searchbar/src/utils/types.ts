@@ -9,7 +9,8 @@ export enum EnumFieldType {
   FLOAT = "float",
   BOOLEAN = "boolean",
   DATE = "date",
-  GEO = "geo"
+  GEO = "geo",
+  OTHER = "other"
 }
 
 export enum EnumOperator {
@@ -31,6 +32,7 @@ export enum EnumOperator {
  * @internal
  */
 export const TypeOperators: { [key in EnumFieldType]: EnumOperator[] } = {
+  [EnumFieldType.OTHER]: [EnumOperator.IS],
   [EnumFieldType.STRING]: [
     EnumOperator.IS,
     EnumOperator.IN,

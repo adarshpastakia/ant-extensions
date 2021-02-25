@@ -6,8 +6,20 @@
 import { EnumFieldType, EnumOperator, SearchBar } from "@ant-extensions/searchbar";
 import { actions } from "@storybook/addon-actions";
 import { ConfigProvider, Menu, Select, Tag } from "antd";
+import i18next from "i18next";
 import React from "react";
 import { useTranslation } from "react-i18next";
+
+i18next.addResourceBundle(
+  "en",
+  "SearchBar",
+  {
+    placeholder: "Test...",
+    label: { filters: "Filters:" }
+  },
+  true,
+  true
+);
 
 export const Example = () => {
   const { i18n } = useTranslation();
