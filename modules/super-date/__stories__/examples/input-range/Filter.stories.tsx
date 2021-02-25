@@ -8,7 +8,7 @@ import { boolean, select } from "@storybook/addon-knobs";
 import { ConfigProvider, Form } from "antd";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { TimeFilterPicker } from "../../../src/components/TimeFilterPicker";
+import { TimeFilterPicker } from "../../../src";
 
 export const Filter = () => {
   const { i18n, t } = useTranslation();
