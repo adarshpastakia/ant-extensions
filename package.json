@@ -8,6 +8,25 @@
   "workspaces": [
     "modules/*"
   ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "start:lerna": "lerna run start --parallel",
+    "start:test": "yarn build:test --watchAll",
+    "watch": "npm-run-all -c --parallel start:lerna start:test",
+    "start": "start-storybook -p 6003",
+    "prebuild": "lerna run build --stream",
+    "build:lib": "lerna run build:lib --stream",
+    "build:style": "lerna run build:style --stream",
+    "build:test": "yarn run:test --json --outputFile=./.storybook/jest-test-results.json",
+    "build:storybook": "build-storybook -o ./build",
+    "build": "npm-run-all build:lib build:test build:storybook",
+    "dist": "lerna run dist --stream",
+    "postdist": "lerna publish patch --tag-version-prefix='' --yes",
+    "run:test": "jest --ci --runInBand --verbose --detectOpenHandles",
+    "test:lint": "eslint --fix --ext=ts,tsx .",
+    "test:typecheck": "tsc -p tsconfig.test.json",
+    "test": "npm-run-all test:lint test:typecheck run:test"
+  },
   "devDependencies": {
     "@case/eslint-config": "^0.3.1",
     "@storybook/addon-actions": "^6.0.21",
@@ -118,24 +137,5 @@
       "text",
       "html"
     ]
-  },
-  "scripts": {
-    "bootstrap": "lerna bootstrap --use-workspaces",
-    "start:lerna": "lerna run start --parallel",
-    "start:test": "yarn build:test --watchAll",
-    "watch": "npm-run-all -c --parallel start:lerna start:test",
-    "start": "start-storybook -p 6003",
-    "prebuild": "lerna run build --stream",
-    "build:lib": "lerna run build:lib --stream",
-    "build:style": "lerna run build:style --stream",
-    "build:test": "yarn run:test --json --outputFile=./.storybook/jest-test-results.json",
-    "build:storybook": "build-storybook -o ./build",
-    "build": "npm-run-all build:lib build:test build:storybook",
-    "dist": "lerna run dist --stream",
-    "postdist": "lerna publish patch --tag-version-prefix='' --yes",
-    "run:test": "jest --ci --runInBand --verbose --detectOpenHandles",
-    "test:lint": "eslint --fix --ext=ts,tsx .",
-    "test:typecheck": "tsc -p tsconfig.test.json",
-    "test": "npm-run-all test:lint test:typecheck run:test"
   }
 }
