@@ -13,7 +13,6 @@
 [![yarn](https://img.shields.io/badge/Yarn-333.svg?style=for-the-badge&logo=yarn)](https://yarnpkg.com/)
 [![prettier](https://img.shields.io/badge/Prettier-333.svg?style=for-the-badge&logo=prettier)](https://prettier.io/)
 [![ts](https://img.shields.io/badge/Typescript-333.svg?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![greenkeeper](https://img.shields.io/badge/GreenKeeper-333.svg?style=for-the-badge&logo=greenkeeper)](https://greenkeeper.io/)
 [![react](https://img.shields.io/badge/React-333.svg?style=for-the-badge&logo=react)](http://reactjs.org/)
 [![lerna](https://img.shields.io/badge/lerna-333.svg?style=for-the-badge&logo=lerna)](https://lerna.js.org/)
 [![ant.design](https://img.shields.io/badge/ant.design-333.svg?style=for-the-badge&logo=blueprint)](https://ant.design/)
