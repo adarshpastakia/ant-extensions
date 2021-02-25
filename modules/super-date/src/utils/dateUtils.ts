@@ -39,7 +39,7 @@ import { DateParts, DateValue, IDatePart, ParsedDate, Type } from "./types";
 /** @internal */
 export const getDateParts = (dt: DateValue): IDatePart | undefined => {
   if (isString(dt)) {
-    const parts = isString(dt) && dt.match(/(\$[\w]*)([-+])?([0-9]+)?/);
+    const parts = dt.match(/(\$[\w]*)([-+])?([0-9]+)?/) ?? [];
 
     const [, part, op = "", diff] = parts;
     return { part: part as DateParts, op, diff: parseInt(diff || "0", 10) };
