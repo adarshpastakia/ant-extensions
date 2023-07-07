@@ -82,7 +82,7 @@
     "react-scripts": "^4.0.3",
     "storybook-addon-specifications": "^2.2.0",
     "storybook-dark-mode": "^1.0.4",
-    "stylelint": "^13.11.0",
+    "stylelint": "^15.10.1",
     "stylelint-order": "^4.1.0",
     "stylelint-prettier": "^1.1.2",
     "ts-jest": "^26.5.2",
